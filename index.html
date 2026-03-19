@@ -45,8 +45,19 @@
         body {
             font-family: 'Cormorant Garamond', Georgia, serif;
             background-color: #2a2a28;
-            background-image: url('bg-pattern.svg');
-            background-size: 400px 400px;
+            background-image:
+                radial-gradient(rgba(201,162,39,0.30) 9px, transparent 10px),
+                repeating-radial-gradient(
+                    rgba(201,162,39,0.22) 0, rgba(201,162,39,0.22) 4px,
+                    transparent 5px, transparent 15px,
+                    rgba(212,168,152,0.18) 16px, rgba(212,168,152,0.18) 20px,
+                    transparent 21px, transparent 30px,
+                    rgba(138,154,91,0.20) 31px, rgba(138,154,91,0.20) 35px,
+                    transparent 36px, transparent 45px,
+                    rgba(148,100,130,0.15) 46px, rgba(148,100,130,0.15) 50px
+                );
+            background-size: 30px 30px, 100px 100px;
+            background-position: 0 0;
             color: var(--cream);
             display: flex;
             flex-direction: column;
