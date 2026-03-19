@@ -3050,7 +3050,7 @@
                 <h3>Roles</h3>
                 <ul>
                     <li><span class="rules-role-label role-badge-murderer">Murderer</span> Secretly eliminate guests during lights-out rounds. You need 6 kills to win.</li>
-                    <li><span class="rules-role-label role-badge-detective">Detective</span> Investigate and interrogate suspects. You have 2 interrogation chances.</li>
+                    <li><span class="rules-role-label role-badge-detective">Detective</span> Investigate and find the murderers. Watch, listen, and deduce.</li>
                     <li><span class="rules-role-label role-badge-innocent">Innocent</span> Survive and help identify the murderers through voting.</li>
                 </ul>
             </div>
@@ -3125,7 +3125,7 @@
                 cssClass: 'role-detective',
                 badgeClass: 'role-badge-detective',
                 infoClass: 'detective-info',
-                description: 'Interrogate suspects and find the murderers. 2 wrong guesses and you lose your badge.'
+                description: 'Investigate and find the murderers. Watch, listen, and deduce.'
             },
             innocent: {
                 name: 'Innocent Guest',
@@ -3741,13 +3741,7 @@
             // Role info
             const infoEl = document.getElementById('role-info-box');
             infoEl.className = 'role-info-box ' + role.infoClass;
-            if (gameState.role === 'detective') {
-                infoEl.textContent = role.description + ' Interrogations left: ' + (gameState.interrogationsLeft || 0);
-            } else if (gameState.role === 'murderer') {
-                infoEl.textContent = role.description;
-            } else {
-                infoEl.textContent = role.description;
-            }
+            infoEl.textContent = role.description;
 
             // Task
             updateTaskDisplay();
