@@ -43,9 +43,16 @@
 
         body {
             font-family: 'Cormorant Garamond', Georgia, serif;
-            background-color: #2a2e28;
-            background-image: url('bg-pattern.svg');
-            background-size: 300px 300px;
+            --s: 60px;
+            --c1: rgba(201,162,39,0.25);
+            --c2: #2a2e28;
+            --_g: #0000 83%, var(--c1) 85% 99%, #0000 101%;
+            background:
+                radial-gradient(27% 29% at right, var(--_g)) calc(var(--s) / 2) var(--s),
+                radial-gradient(27% 29% at left, var(--_g)) calc(var(--s) / -2) var(--s),
+                radial-gradient(29% 27% at top, var(--_g)) 0 calc(var(--s) / 2),
+                radial-gradient(29% 27% at bottom, var(--_g)) 0 calc(var(--s) / -2) var(--c2);
+            background-size: calc(2 * var(--s)) calc(2 * var(--s));
             color: var(--cream);
             display: flex;
             flex-direction: column;
