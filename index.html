@@ -1,0 +1,2329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
+    <title>Wild Nieuw-West — A Murder Mystery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg-dark: #1a1a2e;
+            --bg-darker: #141422;
+            --noir-charcoal: #2a2a3d;
+            --rose: #d4a0a0;
+            --rose-dark: #b07878;
+            --rose-light: #e8c4c4;
+            --sage: #8a9a5b;
+            --sage-dark: #6b7a45;
+            --sage-light: #a8b87a;
+            --gold: #c9a227;
+            --gold-light: #dbb84d;
+            --gold-dark: #a68320;
+            --cream: #e8dfd0;
+            --cream-dark: #c4b89a;
+            --wine: #722f37;
+            --wine-light: #943d47;
+            --wine-dark: #5a2029;
+            --text-light: #e8dfd0;
+            --text-muted: #8a8a9a;
+            --danger: #c23b3b;
+            --danger-dark: #8b2525;
+        }
+
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            background-color: var(--bg-dark);
+            background-image:
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Cdefs%3E%3Cstyle%3Epath%7Bfill:none;stroke-linecap:round%7D%3C/style%3E%3C/defs%3E%3Cpath d='M100 20 Q90 50 100 80 Q110 50 100 20Z' stroke='%23d4a0a0' stroke-width='0.5' fill='%23d4a0a0' opacity='0.04'/%3E%3Cpath d='M100 80 Q85 70 75 55' stroke='%238a9a5b' stroke-width='0.5' opacity='0.05'/%3E%3Cpath d='M100 80 Q115 70 125 55' stroke='%238a9a5b' stroke-width='0.5' opacity='0.05'/%3E%3Cpath d='M80 30 Q70 60 85 85' stroke='%238a9a5b' stroke-width='0.4' opacity='0.04'/%3E%3Cpath d='M120 30 Q130 60 115 85' stroke='%238a9a5b' stroke-width='0.4' opacity='0.04'/%3E%3Ccircle cx='100' cy='45' r='2' fill='%23c9a227' opacity='0.06'/%3E%3Ccircle cx='92' cy='55' r='1.5' fill='%23c9a227' opacity='0.05'/%3E%3Ccircle cx='108' cy='55' r='1.5' fill='%23c9a227' opacity='0.05'/%3E%3Cpath d='M50 100 Q60 85 70 95 Q80 105 70 115 Q60 125 50 100Z' stroke='%23d4a0a0' stroke-width='0.3' fill='%23d4a0a0' opacity='0.03'/%3E%3Cpath d='M150 100 Q140 85 130 95 Q120 105 130 115 Q140 125 150 100Z' stroke='%23d4a0a0' stroke-width='0.3' fill='%23d4a0a0' opacity='0.03'/%3E%3Cpath d='M100 140 Q95 160 100 180 Q105 160 100 140Z' stroke='%23d4a0a0' stroke-width='0.3' fill='%23d4a0a0' opacity='0.03'/%3E%3C/svg%3E"),
+                repeating-linear-gradient(
+                    0deg, transparent, transparent 60px,
+                    rgba(201,162,39,0.03) 60px, rgba(201,162,39,0.03) 61px
+                ),
+                repeating-linear-gradient(
+                    90deg, transparent, transparent 60px,
+                    rgba(201,162,39,0.03) 60px, rgba(201,162,39,0.03) 61px
+                );
+            color: var(--cream);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ============================================
+           TYPOGRAPHY
+           ============================================ */
+        .title-display {
+            font-family: 'Playfair Display', Georgia, serif;
+            letter-spacing: 0.08em;
+        }
+
+        .title-accent {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            font-weight: 400;
+        }
+
+        .title-ui {
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* ============================================
+           SCREENS
+           ============================================ */
+        .screen {
+            display: none;
+            width: 100%;
+            height: 100%;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .screen.active {
+            display: flex;
+        }
+
+        /* ============================================
+           ART NOUVEAU DECORATIVE ELEMENTS
+           ============================================ */
+        .art-nouveau-divider {
+            width: 200px;
+            height: 24px;
+            margin: 16px auto;
+            opacity: 0.4;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 24'%3E%3Cpath d='M0 12 Q25 0 50 12 Q75 24 100 12 Q125 0 150 12 Q175 24 200 12' fill='none' stroke='%23c9a227' stroke-width='1'/%3E%3Cpath d='M40 12 Q55 4 70 12 Q85 20 100 12 Q115 4 130 12 Q145 20 160 12' fill='none' stroke='%23d4a0a0' stroke-width='0.5'/%3E%3Ccircle cx='100' cy='12' r='3' fill='%23c9a227' opacity='0.6'/%3E%3Ccircle cx='70' cy='12' r='1.5' fill='%23d4a0a0' opacity='0.5'/%3E%3Ccircle cx='130' cy='12' r='1.5' fill='%23d4a0a0' opacity='0.5'/%3E%3C/svg%3E") no-repeat center;
+            background-size: contain;
+        }
+
+        /* ============================================
+           START SCREEN
+           ============================================ */
+        #start-screen {
+            text-align: center;
+        }
+
+        .logo-container {
+            margin-bottom: 40px;
+        }
+
+        .logo-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            background: var(--noir-charcoal);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid var(--gold);
+            box-shadow: 0 4px 30px rgba(201,162,39,0.15), inset 0 0 20px rgba(0,0,0,0.3);
+        }
+
+        .logo-icon i {
+            font-size: 3.5rem;
+            color: var(--gold);
+        }
+
+        .logo-title {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: var(--cream);
+            text-shadow: 2px 2px 0 rgba(0,0,0,0.5);
+            margin-bottom: 4px;
+            letter-spacing: 0.1em;
+        }
+
+        .logo-subtitle {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1.4rem;
+            font-style: italic;
+            color: var(--rose);
+            opacity: 0.8;
+            margin-top: 4px;
+        }
+
+        .start-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            width: 100%;
+            max-width: 320px;
+        }
+
+        /* ============================================
+           BUTTONS
+           ============================================ */
+        .btn {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.15rem;
+            letter-spacing: 0.06em;
+            padding: 14px 28px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--bg-dark);
+            border: 2px solid var(--gold-light);
+            box-shadow: 0 4px 0 var(--gold-dark);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 0 var(--gold-dark);
+        }
+
+        .btn-primary:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 var(--gold-dark);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--cream);
+            border: 2px solid var(--cream-dark);
+            box-shadow: 0 4px 0 rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(232,223,208,0.1);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 rgba(0,0,0,0.2);
+        }
+
+        .btn-danger {
+            background: var(--wine);
+            color: var(--cream);
+            border: 2px solid var(--wine-light);
+            box-shadow: 0 4px 0 var(--wine-dark);
+        }
+
+        .btn-danger:hover {
+            background: var(--wine-light);
+            transform: translateY(-2px);
+        }
+
+        .btn-subtle {
+            background: transparent;
+            color: var(--text-muted);
+            border: 2px solid rgba(138,138,154,0.3);
+            font-size: 0.9rem;
+            padding: 10px 20px;
+        }
+
+        .btn-subtle:hover {
+            color: var(--cream);
+            border-color: var(--cream-dark);
+        }
+
+        .btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        /* ============================================
+           JOIN INPUT
+           ============================================ */
+        .join-input-group {
+            display: flex;
+            gap: 8px;
+        }
+
+        .join-input {
+            flex: 1;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.2rem;
+            letter-spacing: 0.15em;
+            padding: 14px;
+            border: 2px solid var(--gold-dark);
+            background: var(--noir-charcoal);
+            color: var(--cream);
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .join-input::placeholder {
+            color: var(--text-muted);
+            opacity: 1;
+        }
+
+        .btn-join {
+            padding: 14px 20px;
+            font-size: 1.1rem;
+        }
+
+        /* ============================================
+           CARDS (Art Nouveau bordered containers)
+           ============================================ */
+        .card {
+            background: rgba(42, 42, 61, 0.85);
+            border: 2px solid var(--gold-dark);
+            padding: 24px;
+            max-width: 400px;
+            width: 100%;
+            position: relative;
+        }
+
+        .card::before,
+        .card::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--gold);
+        }
+
+        .card::before {
+            top: 6px;
+            left: 6px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .card::after {
+            bottom: 6px;
+            right: 6px;
+            border-left: none;
+            border-top: none;
+        }
+
+        /* ============================================
+           CHARACTER SELECTION SCREEN
+           ============================================ */
+        #character-screen {
+            overflow-y: auto;
+            justify-content: flex-start;
+            padding-top: 60px;
+            padding-bottom: 40px;
+        }
+
+        .character-select-container {
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .character-select-title {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.6rem;
+            color: var(--cream);
+            margin-bottom: 8px;
+        }
+
+        .character-select-subtitle {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .character-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+
+        .character-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 18px;
+            background: rgba(42, 42, 61, 0.8);
+            border: 2px solid var(--gold-dark);
+            color: var(--cream);
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: left;
+        }
+
+        .character-btn:hover {
+            background: rgba(201, 162, 39, 0.15);
+            border-color: var(--gold);
+            transform: translateY(-1px);
+        }
+
+        .character-btn:active {
+            transform: translateY(1px);
+        }
+
+        .character-btn.taken {
+            opacity: 0.3;
+            cursor: not-allowed;
+            text-decoration: line-through;
+        }
+
+        .character-btn i {
+            color: var(--gold);
+            font-size: 1.2rem;
+            width: 24px;
+            text-align: center;
+        }
+
+        .custom-name-section {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(201,162,39,0.2);
+        }
+
+        .custom-name-label {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .custom-name-input {
+            width: 100%;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            padding: 12px;
+            border: 2px solid var(--gold-dark);
+            background: var(--noir-charcoal);
+            color: var(--cream);
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        /* ============================================
+           NAME INPUT SCREEN
+           ============================================ */
+        .name-container {
+            text-align: center;
+        }
+
+        .name-label {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--cream);
+            margin-bottom: 16px;
+        }
+
+        .name-input {
+            width: 100%;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            padding: 14px;
+            border: 2px solid var(--gold-dark);
+            background: var(--noir-charcoal);
+            color: var(--cream);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .name-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        /* ============================================
+           LOBBY SCREEN
+           ============================================ */
+        #lobby-screen {
+            overflow-y: auto;
+            justify-content: flex-start;
+            padding-top: 60px;
+            padding-bottom: 40px;
+        }
+
+        .lobby-container {
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .lobby-code {
+            background: var(--noir-charcoal);
+            border: 2px solid var(--gold-dark);
+            padding: 12px 24px;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .lobby-code-label {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            color: var(--text-muted);
+        }
+
+        .lobby-code-value {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            letter-spacing: 0.2em;
+            color: var(--gold);
+        }
+
+        .lobby-players {
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .lobby-players-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 0.1em;
+            color: var(--cream);
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(201,162,39,0.3);
+        }
+
+        .player-list {
+            list-style: none;
+            max-height: 250px;
+            overflow-y: auto;
+        }
+
+        .player-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(201,162,39,0.15);
+        }
+
+        .player-avatar {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .player-name {
+            flex: 1;
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            color: var(--cream);
+        }
+
+        .player-character {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .player-host {
+            font-size: 0.65rem;
+            background: var(--gold);
+            color: var(--bg-dark);
+            padding: 2px 8px;
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 0.1em;
+        }
+
+        .player-dead-badge {
+            font-size: 0.65rem;
+            background: var(--wine);
+            color: var(--cream);
+            padding: 2px 8px;
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 0.1em;
+        }
+
+        .lobby-status {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            margin: 16px 0;
+        }
+
+        .lobby-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        /* ============================================
+           QR CODE
+           ============================================ */
+        .qr-section {
+            margin: 12px auto;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #qr-code {
+            display: flex;
+            justify-content: center;
+        }
+        .qr-section canvas,
+        .qr-section img {
+            border: 3px solid var(--gold-dark) !important;
+        }
+        .qr-label {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            color: var(--text-muted);
+            margin-top: 6px;
+        }
+
+        /* ============================================
+           PULL TO REFRESH
+           ============================================ */
+        .pull-indicator {
+            text-align: center;
+            padding: 0;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s, padding 0.2s;
+        }
+        .pull-indicator.visible {
+            max-height: 40px;
+            padding: 8px;
+        }
+        .pull-indicator.refreshing i {
+            animation: spin 1s linear infinite;
+        }
+
+        /* ============================================
+           WAITING SCREEN
+           ============================================ */
+        .waiting-container {
+            text-align: center;
+            color: var(--cream);
+        }
+
+        .waiting-spinner {
+            width: 60px;
+            height: 60px;
+            border: 3px solid var(--gold);
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 24px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .waiting-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            text-shadow: 2px 2px 0 rgba(0,0,0,0.3);
+        }
+
+        .waiting-subtext {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-top: 8px;
+        }
+
+        /* ============================================
+           GAME SCREEN
+           ============================================ */
+        #game-screen {
+            overflow-y: auto;
+            justify-content: flex-start;
+            padding-top: 20px;
+            padding-bottom: 120px;
+        }
+
+        .game-container {
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        /* Role display */
+        .role-display {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .role-icon-large {
+            font-size: 3.5rem;
+            margin-bottom: 12px;
+        }
+
+        .role-icon-large.role-murderer { color: var(--wine-light); }
+        .role-icon-large.role-detective { color: var(--sage-light); }
+        .role-icon-large.role-innocent { color: var(--rose); }
+
+        .character-name-display {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--cream);
+            margin-bottom: 8px;
+        }
+
+        .role-badge {
+            display: inline-block;
+            padding: 4px 16px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        .role-badge-murderer {
+            background: var(--wine);
+            color: var(--cream);
+        }
+
+        .role-badge-detective {
+            background: var(--sage-dark);
+            color: var(--cream);
+        }
+
+        .role-badge-innocent {
+            background: var(--rose-dark);
+            color: var(--cream);
+        }
+
+        /* Role info box */
+        .role-info-box {
+            width: 100%;
+            padding: 12px 16px;
+            text-align: center;
+            font-size: 0.95rem;
+            border-radius: 4px;
+        }
+
+        .role-info-box.murderer-info {
+            background: rgba(114, 47, 55, 0.2);
+            border: 1px solid rgba(114, 47, 55, 0.4);
+            color: var(--rose-light);
+        }
+
+        .role-info-box.detective-info {
+            background: rgba(138, 154, 91, 0.15);
+            border: 1px solid rgba(138, 154, 91, 0.3);
+            color: var(--sage-light);
+        }
+
+        .role-info-box.innocent-info {
+            background: rgba(212, 160, 160, 0.1);
+            border: 1px solid rgba(212, 160, 160, 0.2);
+            color: var(--rose);
+        }
+
+        /* Task card */
+        .task-card {
+            width: 100%;
+            background: rgba(42, 42, 61, 0.7);
+            border: 2px solid var(--gold-dark);
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .task-card::before,
+        .task-card::after {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            border: 1.5px solid var(--gold);
+        }
+
+        .task-card::before {
+            top: 5px; left: 5px;
+            border-right: none; border-bottom: none;
+        }
+
+        .task-card::after {
+            bottom: 5px; right: 5px;
+            border-left: none; border-top: none;
+        }
+
+        .task-label {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .task-room {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin-bottom: 12px;
+        }
+
+        .task-room i {
+            margin-right: 6px;
+        }
+
+        .task-text {
+            font-size: 1.05rem;
+            color: var(--cream);
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+
+        .task-timer {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+        }
+
+        .task-timer.expiring {
+            color: var(--wine-light);
+        }
+
+        .task-actions {
+            margin-top: 12px;
+        }
+
+        .btn-new-task {
+            background: transparent;
+            border: 1px solid var(--gold-dark);
+            color: var(--gold);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-new-task:hover {
+            background: rgba(201,162,39,0.15);
+        }
+
+        /* Game status bar */
+        .game-status-bar {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            background: rgba(42, 42, 61, 0.5);
+            border: 1px solid rgba(201,162,39,0.2);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+        }
+
+        .death-count-display {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .death-count-display i {
+            color: var(--wine-light);
+        }
+
+        .death-progress {
+            width: 100%;
+            height: 4px;
+            background: rgba(114, 47, 55, 0.2);
+            margin-top: 4px;
+        }
+
+        .death-progress-bar {
+            height: 100%;
+            background: var(--wine-light);
+            transition: width 0.5s ease;
+        }
+
+        /* Death toggle button */
+        .death-toggle-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 16px 20px;
+            background: linear-gradient(transparent, var(--bg-dark) 30%);
+            display: flex;
+            justify-content: center;
+            z-index: 50;
+        }
+
+        .death-toggle {
+            width: 100%;
+            max-width: 360px;
+            padding: 18px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            background: transparent;
+            border: 3px solid var(--wine);
+            color: var(--wine-light);
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+        }
+
+        .death-toggle i {
+            margin-right: 8px;
+        }
+
+        .death-toggle:hover {
+            background: rgba(114, 47, 55, 0.2);
+        }
+
+        .death-toggle.active {
+            background: var(--wine);
+            color: var(--cream);
+            border-color: var(--wine-light);
+            animation: deathPulse 2s infinite;
+        }
+
+        @keyframes deathPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(114, 47, 55, 0.4); }
+            50% { box-shadow: 0 0 20px 5px rgba(114, 47, 55, 0.2); }
+        }
+
+        /* Dead state overlay */
+        .game-container.dead {
+            filter: grayscale(0.5) brightness(0.75);
+        }
+
+        .dead-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(114, 47, 55, 0.15);
+            pointer-events: none;
+            z-index: 40;
+            display: none;
+        }
+
+        .dead-overlay.visible {
+            display: block;
+        }
+
+        /* ============================================
+           RULES SCREEN
+           ============================================ */
+        #rules-screen {
+            overflow-y: auto;
+            justify-content: flex-start;
+            padding-top: 60px;
+            padding-bottom: 40px;
+        }
+
+        .rules-container {
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .rules-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            text-align: center;
+            color: var(--cream);
+            margin-bottom: 24px;
+        }
+
+        .rules-section {
+            margin-bottom: 24px;
+            padding: 16px;
+            background: rgba(42, 42, 61, 0.5);
+            border-left: 3px solid var(--gold-dark);
+        }
+
+        .rules-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin-bottom: 8px;
+        }
+
+        .rules-section p,
+        .rules-section li {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--cream);
+            opacity: 0.85;
+        }
+
+        .rules-section ul {
+            margin-left: 20px;
+            margin-top: 8px;
+        }
+
+        .rules-section li {
+            margin-bottom: 4px;
+        }
+
+        .rules-role-label {
+            display: inline-block;
+            padding: 2px 8px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            margin-right: 4px;
+        }
+
+        /* ============================================
+           BACK / LEAVE BUTTONS
+           ============================================ */
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            width: 44px;
+            height: 44px;
+            background: var(--noir-charcoal);
+            border: 2px solid var(--gold-dark);
+            color: var(--gold);
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            transition: all 0.2s;
+        }
+
+        .back-btn:hover {
+            background: rgba(201,162,39,0.15);
+        }
+
+        .leave-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 8px 14px;
+            background: transparent;
+            border: 2px solid rgba(232, 223, 208, 0.3);
+            color: rgba(232, 223, 208, 0.5);
+            font-size: 0.75rem;
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 1px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s;
+            z-index: 1000;
+        }
+
+        .leave-btn:hover {
+            background: rgba(114, 47, 55, 0.6);
+            border-color: var(--cream);
+            color: var(--cream);
+        }
+
+        .leave-btn i {
+            margin-right: 5px;
+        }
+
+        /* ============================================
+           STATUS MESSAGES
+           ============================================ */
+        .status-message {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--noir-charcoal);
+            color: var(--cream);
+            padding: 12px 24px;
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 0.1em;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            border: 1px solid var(--gold-dark);
+            display: none;
+            z-index: 200;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .status-message.show {
+            display: flex;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+            to { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+
+        .status-message.error {
+            background: var(--wine);
+            border-color: var(--wine-light);
+        }
+
+        .status-message i {
+            font-size: 1rem;
+        }
+
+        /* ============================================
+           COUNTDOWN OVERLAY
+           ============================================ */
+        .countdown-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(20, 20, 34, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 500;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+        .countdown-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        .countdown-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 10rem;
+            font-weight: 700;
+            color: var(--gold);
+            text-shadow: 4px 4px 0 rgba(0,0,0,0.3);
+        }
+        .countdown-number.pop {
+            animation: countdownPop 0.8s ease-out;
+        }
+        @keyframes countdownPop {
+            0% { transform: scale(2); opacity: 0; }
+            50% { transform: scale(0.9); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* ============================================
+           OFFLINE BANNER
+           ============================================ */
+        .offline-banner {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            background: var(--wine);
+            color: white;
+            text-align: center;
+            padding: 8px 16px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            z-index: 1000;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+        }
+        .offline-banner.visible {
+            transform: translateY(0);
+        }
+
+        /* ============================================
+           MOBILE OPTIMIZATIONS
+           ============================================ */
+        @media (max-width: 360px) {
+            .logo-title { font-size: 2.2rem; }
+            .logo-subtitle { font-size: 1.2rem; }
+            .character-name-display { font-size: 1.5rem; }
+            .role-icon-large { font-size: 2.8rem; }
+            .btn { font-size: 1rem; padding: 12px 20px; }
+        }
+
+        @media (max-width: 600px) {
+            .character-grid {
+                gap: 8px;
+            }
+            .character-btn {
+                padding: 12px 14px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Offline Banner -->
+    <div class="offline-banner" id="offline-banner">
+        <i class="fas fa-wifi"></i> No connection
+    </div>
+
+    <!-- Countdown Overlay -->
+    <div class="countdown-overlay" id="countdown-overlay">
+        <div class="countdown-number" id="countdown-number">3</div>
+    </div>
+
+    <!-- Dead Overlay -->
+    <div class="dead-overlay" id="dead-overlay"></div>
+
+    <!-- Leave Button -->
+    <button class="leave-btn" id="leave-btn" style="display: none;" onclick="leaveGame()">
+        <i class="fas fa-sign-out-alt"></i> LEAVE
+    </button>
+
+    <!-- ==================== START SCREEN ==================== -->
+    <div id="start-screen" class="screen active">
+        <div class="logo-container">
+            <div class="logo-icon">
+                <i class="fas fa-mask"></i>
+            </div>
+            <h1 class="logo-title title-display">WILD NIEUW-WEST</h1>
+            <div class="art-nouveau-divider"></div>
+            <h2 class="logo-subtitle title-accent">A Murder Mystery</h2>
+        </div>
+        <div class="start-buttons">
+            <button class="btn btn-primary" onclick="showScreen('name-screen', true)">Host a Party</button>
+            <div class="join-input-group">
+                <input type="text" class="join-input" id="join-code-input" placeholder="GAME CODE" maxlength="10">
+                <button class="btn btn-secondary btn-join" onclick="joinWithCode()">Join</button>
+            </div>
+            <button class="btn btn-subtle" onclick="showScreen('rules-screen')">
+                <i class="fas fa-book-open"></i> How to Play
+            </button>
+        </div>
+    </div>
+
+    <!-- ==================== NAME INPUT SCREEN ==================== -->
+    <div id="name-screen" class="screen">
+        <button class="back-btn" onclick="showScreen('start-screen')">&#8592;</button>
+        <div class="card name-container">
+            <h2 class="name-label">Enter Your Name</h2>
+            <input type="text" class="name-input" id="player-name-input" placeholder="Your name" maxlength="20">
+            <button class="btn btn-primary" onclick="confirmName()" style="width: 100%;">Continue</button>
+        </div>
+    </div>
+
+    <!-- ==================== CHARACTER SELECTION SCREEN ==================== -->
+    <div id="character-screen" class="screen">
+        <button class="back-btn" onclick="showScreen('start-screen')">&#8592;</button>
+        <div class="character-select-container">
+            <h2 class="character-select-title title-display">Choose Your Character</h2>
+            <p class="character-select-subtitle">Your role will be revealed when the party begins</p>
+            <div class="art-nouveau-divider"></div>
+            <div class="character-grid" id="character-grid">
+                <!-- Character buttons generated dynamically -->
+            </div>
+            <div class="custom-name-section">
+                <p class="custom-name-label">Or enter as a custom guest:</p>
+                <input type="text" class="custom-name-input" id="custom-character-input" placeholder="Custom character name" maxlength="30">
+                <button class="btn btn-secondary" onclick="joinAsCustomCharacter()" style="width: 100%;">Join as Guest</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== LOBBY SCREEN ==================== -->
+    <div id="lobby-screen" class="screen">
+        <button class="back-btn" onclick="leaveLobby()">&#8592;</button>
+        <div class="lobby-container">
+            <div class="lobby-code">
+                <div class="lobby-code-label">GAME CODE</div>
+                <div class="lobby-code-value" id="lobby-code-display">XXXX00</div>
+            </div>
+
+            <!-- QR Code -->
+            <div class="qr-section" id="qr-section" style="display: none;">
+                <div id="qr-code"></div>
+                <div class="qr-label">Scan to join</div>
+            </div>
+
+            <!-- Pull to refresh indicator -->
+            <div class="pull-indicator" id="pull-indicator">
+                <i class="fas fa-arrow-down"></i> Release to refresh
+            </div>
+
+            <div class="lobby-players">
+                <div class="lobby-players-title">
+                    Guests (<span id="player-count">0</span>)
+                </div>
+                <ul class="player-list" id="player-list">
+                    <!-- Players added dynamically -->
+                </ul>
+            </div>
+
+            <div class="lobby-status" id="lobby-status">Waiting for guests...</div>
+
+            <div class="lobby-actions">
+                <button class="btn btn-primary" id="start-game-btn" onclick="startGameCountdown()" style="display: none;">
+                    Start the Party
+                </button>
+                <button class="btn btn-secondary" onclick="copyGameCode()">Copy Game Code</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== WAITING SCREEN ==================== -->
+    <div id="waiting-screen" class="screen">
+        <div class="waiting-container">
+            <div class="waiting-spinner"></div>
+            <div class="waiting-text" id="waiting-text">Waiting for Host</div>
+            <div class="waiting-subtext" id="waiting-subtext">The party will begin soon...</div>
+        </div>
+    </div>
+
+    <!-- ==================== GAME SCREEN ==================== -->
+    <div id="game-screen" class="screen">
+        <div class="game-container" id="game-container">
+            <!-- Role Display -->
+            <div class="role-display">
+                <div class="role-icon-large" id="game-role-icon">
+                    <i class="fas fa-mask"></i>
+                </div>
+                <div class="character-name-display" id="game-character-name">Character Name</div>
+                <div class="role-badge" id="game-role-badge">ROLE</div>
+            </div>
+
+            <!-- Role Info Box -->
+            <div class="role-info-box" id="role-info-box">
+                You are an innocent guest. Survive the night.
+            </div>
+
+            <!-- Current Task Card -->
+            <div class="task-card">
+                <div class="task-label">CURRENT TASK</div>
+                <div class="task-room" id="task-room">
+                    <i class="fas fa-door-open"></i> <span id="task-room-name">Room</span>
+                </div>
+                <div class="task-text" id="task-text">Your task will appear here...</div>
+                <div class="task-timer" id="task-countdown">Next task in 20:00</div>
+                <div class="task-actions">
+                    <button class="btn-new-task" onclick="requestNewTask()">
+                        <i class="fas fa-refresh"></i> NEW TASK
+                    </button>
+                </div>
+            </div>
+
+            <!-- Game Status -->
+            <div class="game-status-bar">
+                <div class="death-count-display">
+                    <i class="fas fa-skull"></i> Deaths: <span id="death-count">0</span>/<span id="murder-target">6</span>
+                </div>
+                <div>Alive: <span id="alive-count">0</span></div>
+            </div>
+            <div class="death-progress">
+                <div class="death-progress-bar" id="death-progress-bar" style="width: 0%"></div>
+            </div>
+        </div>
+
+        <!-- Death Toggle (fixed at bottom) -->
+        <div class="death-toggle-container" id="death-toggle-container">
+            <button class="death-toggle" id="death-toggle-btn" onclick="toggleDeath()">
+                <i class="fas fa-skull-crossbones"></i> I Have Been Murdered!
+            </button>
+        </div>
+    </div>
+
+    <!-- ==================== RULES SCREEN ==================== -->
+    <div id="rules-screen" class="screen">
+        <button class="back-btn" onclick="showScreen('start-screen')">&#8592;</button>
+        <div class="rules-container">
+            <h2 class="rules-title title-display">How to Play</h2>
+            <div class="art-nouveau-divider"></div>
+
+            <div class="rules-section">
+                <h3>Overview</h3>
+                <p>Wild Nieuw-West is a murder mystery party game. Players take on secret roles and move through the house completing tasks. Murderers try to "kill" guests in the dark. Detectives try to catch them. Innocents try to survive.</p>
+            </div>
+
+            <div class="rules-section">
+                <h3>Roles</h3>
+                <ul>
+                    <li><span class="rules-role-label role-badge-murderer">Murderer</span> Secretly eliminate guests during lights-out rounds. You need 6 kills to win.</li>
+                    <li><span class="rules-role-label role-badge-detective">Detective</span> Investigate and interrogate suspects. You have 2 interrogation chances.</li>
+                    <li><span class="rules-role-label role-badge-innocent">Innocent</span> Survive and help identify the murderers through voting.</li>
+                </ul>
+            </div>
+
+            <div class="rules-section">
+                <h3>Tasks &amp; Rooms</h3>
+                <p>Every 20 minutes, you'll receive a new task sending you to a specific room. Go there and complete the social task. This keeps everyone moving and creates opportunities for murder.</p>
+            </div>
+
+            <div class="rules-section">
+                <h3>Lights Out</h3>
+                <p>Periodically, the host will call "Lights Out!" Everyone closes their eyes. Murderers silently tap a victim on the shoulder. When lights return, murdered players press "I Have Been Murdered!" on their phone.</p>
+            </div>
+
+            <div class="rules-section">
+                <h3>Discussion &amp; Voting</h3>
+                <p>After a murder is discovered, players discuss suspicions and may vote to "arrest" a suspect. If the group correctly arrests a murderer, that murderer is eliminated.</p>
+            </div>
+
+            <div class="rules-section">
+                <h3>Victory</h3>
+                <ul>
+                    <li><strong>Murderers win</strong> if they reach 6 kills.</li>
+                    <li><strong>Innocents &amp; Detectives win</strong> if all murderers are arrested before reaching 6 kills.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== STATUS MESSAGE ==================== -->
+    <div class="status-message" id="status-message"></div>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script>
+        // ==================== DISPLAY DATA ====================
+        const ROOM_DISPLAY = {
+            balcony:           { name: 'Balcony',             icon: 'fa-cloud-moon' },
+            living_room:       { name: 'Living Room',         icon: 'fa-couch' },
+            kitchen:           { name: 'Kitchen',             icon: 'fa-utensils' },
+            hall:              { name: 'Hall',                icon: 'fa-door-open' },
+            big_bathroom:      { name: 'Big Bathroom',        icon: 'fa-bath' },
+            laundry_room:      { name: 'Laundry Room',        icon: 'fa-shirt' },
+            gustavos_bedroom:  { name: "Gustavo's Bedroom",   icon: 'fa-bed' },
+            jakobs_bedroom:    { name: "Jakob's Bedroom",     icon: 'fa-bed' },
+        };
+
+        const ROLE_CONFIG = {
+            murderer: {
+                name: 'Murderer',
+                icon: 'fa-skull-crossbones',
+                cssClass: 'role-murderer',
+                badgeClass: 'role-badge-murderer',
+                infoClass: 'murderer-info',
+                description: 'You must murder 6 guests to win. Be discreet during lights-out.'
+            },
+            detective: {
+                name: 'Detective',
+                icon: 'fa-magnifying-glass',
+                cssClass: 'role-detective',
+                badgeClass: 'role-badge-detective',
+                infoClass: 'detective-info',
+                description: 'Interrogate suspects and find the murderers. 2 wrong guesses and you lose your badge.'
+            },
+            innocent: {
+                name: 'Innocent Guest',
+                icon: 'fa-mask',
+                cssClass: 'role-innocent',
+                badgeClass: 'role-badge-innocent',
+                infoClass: 'innocent-info',
+                description: 'Survive the night. Help identify and arrest the murderers through careful observation.'
+            }
+        };
+
+        // Character names (roles are secret — determined by backend on join)
+        const CHARACTER_NAMES = [
+            'Contessa Valentina', 'Professor Aldric', 'Baroness Eloise',
+            'Captain Mortimer', 'Madame Séraphine', 'Lord Pemberton',
+            'Dr. Faust', 'Lady Blackwood', 'Signor Rinaldi',
+            'Miss Clementine', 'Colonel Ashworth', 'Duchess Margaux',
+            'Henrik the Butler', 'Rosa the Maid', 'Father Ignatius',
+            'Vivienne the Singer',
+        ];
+
+        // Room tasks (all client-side)
+        const ROOM_TASKS = {
+            'balcony': [
+                'Go to the balcony and admire the night sky with someone',
+                'Step outside for fresh air and share a secret with a guest',
+                'Have a hushed conversation on the balcony about the evening',
+            ],
+            'living_room': [
+                'Check the art in the living room and share your opinion',
+                'Sit in the living room and discuss your philosophy of life',
+                'Compliment the host on their living room decor',
+            ],
+            'kitchen': [
+                'Pretend to make a drink in the kitchen',
+                'Help yourself to refreshments and chat with whoever is there',
+                'Offer to prepare something for another guest',
+            ],
+            'hall': [
+                'Linger in the hall and greet passing guests',
+                'Have a private conversation in the hallway',
+                'Stand by the entrance and observe who comes and goes',
+            ],
+            'big_bathroom': [
+                'Freshen up and have a brief chat near the bathroom',
+                'Powder your nose and exchange gossip',
+                'Wait near the bathroom and corner someone for a quick word',
+            ],
+            'laundry_room': [
+                'Sneak into the laundry room for a secret conversation',
+                'Pretend to look for something in the laundry room',
+                'Hide in the laundry room and eavesdrop on nearby chatter',
+            ],
+            'gustavos_bedroom': [
+                'Explore Gustavo\'s bedroom curiously',
+                'Admire the decor in Gustavo\'s room and chat with someone',
+                'Look through Gustavo\'s bookshelf and discuss a title',
+            ],
+            'jakobs_bedroom': [
+                'Peek into Jakob\'s bedroom out of curiosity',
+                'Have a discreet chat in Jakob\'s room',
+                'Examine something interesting in Jakob\'s room',
+            ],
+        };
+
+        const ROOMS = Object.keys(ROOM_TASKS);
+
+        // Player avatar colors
+        const AVATAR_COLORS = [
+            '#d4a0a0', '#8a9a5b', '#c9a227', '#6b7a45', '#b07878',
+            '#943d47', '#4a6fa5', '#a68320', '#722f37', '#dbb84d',
+            '#5a8a5b', '#8a5b9a', '#5b8a9a', '#9a5b5b', '#5b5b9a'
+        ];
+        const AVATAR_ICONS = [
+            'fa-user', 'fa-user-secret', 'fa-hat-wizard', 'fa-crown', 'fa-glasses',
+            'fa-mask', 'fa-ghost', 'fa-wand-sparkles', 'fa-feather', 'fa-gem',
+            'fa-star', 'fa-moon', 'fa-sun', 'fa-heart', 'fa-diamond'
+        ];
+
+        // ==================== APP STATE ====================
+        let gameState = {
+            gameCode: null,
+            playerId: null,
+            playerName: null,
+            characterName: null,
+            isHost: false,
+            role: null,
+            isDead: false,
+            currentTask: null,
+            currentRoom: null,
+            taskAssignedAt: null,
+            players: [],
+            deathCount: 0,
+            totalPlayers: 0,
+            gameStatus: 'waiting',
+            isCreating: false
+        };
+
+        // ==================== CONFIGURATION ====================
+        const API_URL = 'https://script.google.com/macros/s/AKfycbwJwKvlEkGxacFR0PevUzY4C9_I80wHF9tMH9jSBSGAUyUsrf1JzViDeXAWYof96YDKRg/exec'; // Replace with your deployed Apps Script URL
+        const POLL_INTERVAL = 3000;
+        const TASK_INTERVAL = 20 * 60 * 1000; // 20 minutes
+
+        let pollTimer = null;
+        let taskTimerInterval = null;
+        let knownPlayerIds = new Set();
+        let statusTimer = null;
+        let qrInstance = null;
+
+        // ==================== API ====================
+        async function callAPI(action, params = {}) {
+            const maxRetries = 3;
+            let lastError;
+            for (let attempt = 0; attempt < maxRetries; attempt++) {
+                try {
+                    // Use GET with individual query params to work with Apps Script redirects
+                    const queryParams = new URLSearchParams({ action, ...params });
+                    const url = API_URL + '?' + queryParams.toString();
+                    const response = await fetch(url, { method: 'GET' });
+                    return await response.json();
+                } catch (error) {
+                    lastError = error;
+                    console.error(`API attempt ${attempt + 1} failed:`, error);
+                    if (attempt < maxRetries - 1) {
+                        const delay = Math.pow(2, attempt) * 1000;
+                        showStatus(`Reconnecting... (attempt ${attempt + 2})`, true);
+                        await new Promise(r => setTimeout(r, delay));
+                    }
+                }
+            }
+            throw lastError;
+        }
+
+        // ==================== SCREEN NAVIGATION ====================
+        function showScreen(screenId, isCreating = false) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById(screenId).classList.add('active');
+
+            const leaveBtn = document.getElementById('leave-btn');
+            leaveBtn.style.display = (screenId === 'start-screen' || screenId === 'rules-screen') ? 'none' : 'block';
+
+            gameState.isCreating = isCreating;
+
+            if (screenId === 'lobby-screen') {
+                updateLobbyDisplay();
+            }
+            if (screenId === 'game-screen') {
+                startTaskTimer();
+            }
+        }
+
+        // ==================== STATUS MESSAGES ====================
+        function showStatus(message, isError = false) {
+            const el = document.getElementById('status-message');
+            const icon = isError ? '<i class="fas fa-exclamation-circle"></i>' : '<i class="fas fa-check-circle"></i>';
+            el.innerHTML = icon + ' ' + message;
+            el.className = 'status-message show' + (isError ? ' error' : '');
+
+            if (statusTimer) clearTimeout(statusTimer);
+            statusTimer = setTimeout(() => {
+                el.className = 'status-message';
+            }, 3000);
+        }
+
+        // ==================== GAME FLOW ====================
+
+        // Step 1: Confirm name, then create/join
+        function confirmName() {
+            const name = document.getElementById('player-name-input').value.trim();
+            if (!name) {
+                showStatus('Please enter your name', true);
+                return;
+            }
+            gameState.playerName = name;
+
+            if (gameState.isCreating) {
+                createGame();
+            } else {
+                // Joining - show character selection
+                loadCharacterSelection();
+            }
+        }
+
+        // Host: Create a new game
+        async function createGame() {
+            try {
+                showStatus('Creating party...');
+                const result = await callAPI('createGame', {
+                    hostName: gameState.playerName
+                });
+
+                if (result.success) {
+                    gameState.gameCode = result.gameCode;
+                    gameState.playerId = result.playerId;
+                    gameState.isHost = true;
+                    saveGameState();
+
+                    // Host needs to pick a character too — show character screen
+                    populateCharacterGrid(CHARACTER_NAMES, []);
+                    showScreen('character-screen');
+                } else {
+                    showStatus(result.error || 'Failed to create game', true);
+                }
+            } catch (error) {
+                showStatus('Connection error', true);
+            }
+        }
+
+        // Join: Enter code and go to character selection
+        function joinWithCode() {
+            const code = document.getElementById('join-code-input').value.trim().toUpperCase();
+            if (!code) {
+                showStatus('Enter a game code', true);
+                return;
+            }
+            gameState.gameCode = code;
+            showScreen('name-screen', false);
+        }
+
+        // Load available characters for joining
+        async function loadCharacterSelection() {
+            try {
+                showStatus('Loading characters...');
+                const result = await callAPI('getPlayers', {
+                    gameCode: gameState.gameCode
+                });
+
+                if (result.success) {
+                    const takenCharacters = result.takenCharacters || [];
+                    populateCharacterGrid(CHARACTER_NAMES, takenCharacters);
+                    showScreen('character-screen');
+                } else {
+                    showStatus(result.error || 'Game not found', true);
+                }
+            } catch (error) {
+                showStatus('Connection error', true);
+            }
+        }
+
+        // Populate character selection buttons
+        function populateCharacterGrid(characterNames, takenNames) {
+            const grid = document.getElementById('character-grid');
+            grid.innerHTML = characterNames.map(name => {
+                const taken = takenNames.includes(name);
+                return `<button class="character-btn ${taken ? 'taken' : ''}"
+                    onclick="${taken ? '' : `selectCharacter('${name.replace(/'/g, "\\'")}')`}"
+                    ${taken ? 'disabled' : ''}>
+                    <i class="fas fa-user"></i>
+                    <span>${name}</span>
+                    ${taken ? '<small style="color: var(--text-muted); margin-left: auto;">Taken</small>' : ''}
+                </button>`;
+            }).join('');
+        }
+
+        // Select a predefined character
+        async function selectCharacter(characterName) {
+            await joinGameWithCharacter(characterName);
+        }
+
+        // Join as custom character
+        async function joinAsCustomCharacter() {
+            const customName = document.getElementById('custom-character-input').value.trim();
+            if (!customName) {
+                showStatus('Enter a character name', true);
+                return;
+            }
+            await joinGameWithCharacter(customName);
+        }
+
+        // Join game with selected character
+        async function joinGameWithCharacter(characterName) {
+            try {
+                showStatus('Joining party...');
+
+                if (gameState.isHost) {
+                    // Host is selecting their character — need to re-join with character
+                    const result = await callAPI('joinGame', {
+                        gameCode: gameState.gameCode,
+                        playerName: gameState.playerName,
+                        characterName: characterName
+                    });
+
+                    // For host, we already have a player entry from createGame
+                    // The backend creates a second entry — we use the new playerId
+                    if (result.success) {
+                        gameState.playerId = result.playerId;
+                        gameState.characterName = result.characterName;
+                        saveGameState();
+                        showScreen('lobby-screen');
+                        generateQRCode();
+                        startPolling();
+                        showStatus('Party created!');
+                    } else {
+                        showStatus(result.error || 'Failed to join', true);
+                    }
+                } else {
+                    const result = await callAPI('joinGame', {
+                        gameCode: gameState.gameCode,
+                        playerName: gameState.playerName,
+                        characterName: characterName
+                    });
+
+                    if (result.success) {
+                        gameState.playerId = result.playerId;
+                        gameState.characterName = result.characterName;
+                        saveGameState();
+                        showScreen('lobby-screen');
+                        generateQRCode();
+                        startPolling();
+                        showStatus('Joined the party!');
+                    } else {
+                        showStatus(result.error || 'Failed to join', true);
+                    }
+                }
+            } catch (error) {
+                showStatus('Connection error', true);
+            }
+        }
+
+        // Start game (host only) — with countdown
+        function startGameCountdown() {
+            const overlay = document.getElementById('countdown-overlay');
+            const numberEl = document.getElementById('countdown-number');
+            overlay.classList.add('active');
+
+            let count = 3;
+            numberEl.textContent = count;
+            numberEl.classList.add('pop');
+
+            const countInterval = setInterval(() => {
+                count--;
+                if (count > 0) {
+                    numberEl.textContent = count;
+                    numberEl.classList.remove('pop');
+                    void numberEl.offsetWidth;
+                    numberEl.classList.add('pop');
+                    playClick();
+                } else {
+                    clearInterval(countInterval);
+                    overlay.classList.remove('active');
+                    startGameAPI();
+                }
+            }, 1000);
+
+            playClick();
+        }
+
+        async function startGameAPI() {
+            try {
+                showStatus('Starting the party...');
+                const result = await callAPI('startGame', {
+                    gameCode: gameState.gameCode,
+                    playerId: gameState.playerId
+                });
+
+                if (result.success) {
+                    gameState.gameStatus = 'active';
+                    saveGameState();
+                    playChime();
+                    haptic(300);
+
+                    // Fetch game state to get our role
+                    const stateResult = await callAPI('getGameState', {
+                        gameCode: gameState.gameCode
+                    });
+
+                    if (stateResult.success) {
+                        // Find our role from the player list
+                        const me = stateResult.players.find(p => p.id === gameState.playerId);
+                        if (me) {
+                            gameState.role = me.role;
+                            gameState.characterName = me.characterName;
+                            gameState.isDead = me.isDead;
+                        }
+                        gameState.deathCount = stateResult.deathCount;
+                        gameState.totalPlayers = stateResult.totalPlayers;
+                        gameState.players = stateResult.players;
+
+                        // Assign initial task client-side
+                        assignRandomTask();
+
+                        saveGameState();
+                        showScreen('game-screen');
+                        updateGameScreen();
+                    }
+                } else {
+                    showStatus(result.error || 'Failed to start', true);
+                }
+            } catch (error) {
+                showStatus('Connection error', true);
+            }
+        }
+
+        // Assign a random task entirely client-side
+        function assignRandomTask() {
+            const room = ROOMS[Math.floor(Math.random() * ROOMS.length)];
+            const tasks = ROOM_TASKS[room];
+            const task = tasks[Math.floor(Math.random() * tasks.length)];
+            gameState.currentRoom = room;
+            gameState.currentTask = task;
+            gameState.taskAssignedAt = new Date().toISOString();
+        }
+
+        // Request a new task (entirely client-side)
+        function requestNewTask() {
+            assignRandomTask();
+            saveGameState();
+            updateTaskDisplay();
+            updateTaskCountdown();
+            showStatus('New task assigned!');
+            playChime();
+            haptic(200);
+        }
+
+        // Toggle death status
+        async function toggleDeath() {
+            if (!gameState.isDead) {
+                if (!confirm('Are you sure you have been murdered?')) return;
+            }
+
+            try {
+                const result = await callAPI('reportDeath', {
+                    gameCode: gameState.gameCode,
+                    playerId: gameState.playerId
+                });
+
+                if (result.success) {
+                    gameState.isDead = result.isDead;
+                    saveGameState();
+                    updateDeathDisplay();
+                    showStatus(gameState.isDead ? 'You have been murdered!' : 'Back from the dead!');
+                    if (gameState.isDead) {
+                        haptic(300);
+                    }
+                }
+            } catch (error) {
+                showStatus('Failed to update status', true);
+            }
+        }
+
+        // ==================== DISPLAY UPDATES ====================
+
+        function updateGameScreen() {
+            const role = ROLE_CONFIG[gameState.role] || ROLE_CONFIG.innocent;
+
+            // Role icon
+            const iconEl = document.getElementById('game-role-icon');
+            iconEl.innerHTML = `<i class="fas ${role.icon}"></i>`;
+            iconEl.className = 'role-icon-large ' + role.cssClass;
+
+            // Character name
+            document.getElementById('game-character-name').textContent = gameState.characterName || 'Unknown';
+
+            // Role badge
+            const badgeEl = document.getElementById('game-role-badge');
+            badgeEl.textContent = role.name;
+            badgeEl.className = 'role-badge ' + role.badgeClass;
+
+            // Role info
+            const infoEl = document.getElementById('role-info-box');
+            infoEl.className = 'role-info-box ' + role.infoClass;
+            if (gameState.role === 'detective') {
+                infoEl.textContent = role.description + ' Interrogations left: ' + (gameState.interrogationsLeft || 0);
+            } else if (gameState.role === 'murderer') {
+                infoEl.textContent = role.description;
+            } else {
+                infoEl.textContent = role.description;
+            }
+
+            // Task
+            updateTaskDisplay();
+
+            // Death count
+            updateDeathCount();
+
+            // Dead state
+            updateDeathDisplay();
+        }
+
+        function updateTaskDisplay() {
+            const roomKey = gameState.currentRoom;
+            const roomInfo = ROOM_DISPLAY[roomKey] || { name: roomKey || 'Unknown', icon: 'fa-location-dot' };
+
+            document.getElementById('task-room').innerHTML = `<i class="fas ${roomInfo.icon}"></i> <span>${roomInfo.name}</span>`;
+            document.getElementById('task-text').textContent = gameState.currentTask || 'No task assigned yet';
+        }
+
+        function updateDeathCount() {
+            document.getElementById('death-count').textContent = gameState.deathCount || 0;
+            document.getElementById('alive-count').textContent = (gameState.totalPlayers || 0) - (gameState.deathCount || 0);
+
+            const target = 6;
+            document.getElementById('murder-target').textContent = target;
+            const pct = Math.min(100, ((gameState.deathCount || 0) / target) * 100);
+            document.getElementById('death-progress-bar').style.width = pct + '%';
+        }
+
+        function updateDeathDisplay() {
+            const btn = document.getElementById('death-toggle-btn');
+            const overlay = document.getElementById('dead-overlay');
+            const container = document.getElementById('game-container');
+
+            if (gameState.isDead) {
+                btn.classList.add('active');
+                btn.innerHTML = '<i class="fas fa-skull"></i> I Am Dead';
+                overlay.classList.add('visible');
+                container.classList.add('dead');
+            } else {
+                btn.classList.remove('active');
+                btn.innerHTML = '<i class="fas fa-skull-crossbones"></i> I Have Been Murdered!';
+                overlay.classList.remove('visible');
+                container.classList.remove('dead');
+            }
+        }
+
+        function updateLobbyDisplay() {
+            document.getElementById('lobby-code-display').textContent = gameState.gameCode || '';
+            document.getElementById('player-count').textContent = gameState.players.length;
+
+            const list = document.getElementById('player-list');
+            list.innerHTML = gameState.players.map((p, i) => {
+                const color = AVATAR_COLORS[i % AVATAR_COLORS.length];
+                const icon = AVATAR_ICONS[i % AVATAR_ICONS.length];
+                const isHost = p.isHost;
+                const isDead = p.isDead;
+
+                return `<li class="player-item">
+                    <div class="player-avatar" style="background: ${color};">
+                        <i class="fas ${icon}"></i>
+                    </div>
+                    <span class="player-name">${p.characterName || p.name}</span>
+                    ${p.characterName && p.characterName !== p.name ? `<span class="player-character">(${p.name})</span>` : ''}
+                    ${isHost ? '<span class="player-host">HOST</span>' : ''}
+                    ${isDead ? '<span class="player-dead-badge">DEAD</span>' : ''}
+                </li>`;
+            }).join('');
+
+            // Show start button for host with 2+ players
+            const startBtn = document.getElementById('start-game-btn');
+            if (gameState.isHost && gameState.players.length >= 2) {
+                startBtn.style.display = 'block';
+            } else {
+                startBtn.style.display = 'none';
+            }
+        }
+
+        // ==================== TASK TIMER ====================
+        function startTaskTimer() {
+            clearInterval(taskTimerInterval);
+            taskTimerInterval = setInterval(updateTaskCountdown, 1000);
+            updateTaskCountdown();
+        }
+
+        function updateTaskCountdown() {
+            if (!gameState.taskAssignedAt) return;
+
+            const assignedAt = new Date(gameState.taskAssignedAt).getTime();
+            const elapsed = Date.now() - assignedAt;
+            const remaining = Math.max(0, TASK_INTERVAL - elapsed);
+
+            const minutes = Math.floor(remaining / 60000);
+            const seconds = Math.floor((remaining % 60000) / 1000);
+
+            const timerEl = document.getElementById('task-countdown');
+            timerEl.textContent = `Next task in ${minutes}:${seconds.toString().padStart(2, '0')}`;
+
+            if (remaining < 60000) {
+                timerEl.classList.add('expiring');
+            } else {
+                timerEl.classList.remove('expiring');
+            }
+
+            if (remaining <= 0) {
+                timerEl.textContent = 'New task arriving...';
+                // Auto-assign a new task client-side
+                requestNewTask();
+            }
+        }
+
+        // ==================== POLLING ====================
+        function startPolling() {
+            stopPolling();
+            knownPlayerIds = new Set(gameState.players.map(p => p.id));
+
+            pollTimer = setInterval(async () => {
+                try {
+                    if (gameState.gameStatus === 'active') {
+                        // Active game: poll getGameState for death count updates
+                        const result = await callAPI('getGameState', {
+                            gameCode: gameState.gameCode
+                        });
+
+                        if (result.success) {
+                            gameState.deathCount = result.deathCount;
+                            gameState.totalPlayers = result.totalPlayers;
+                            gameState.players = result.players;
+
+                            // Update our own death status from server
+                            const me = result.players.find(p => p.id === gameState.playerId);
+                            if (me) {
+                                gameState.isDead = me.isDead;
+                            }
+
+                            saveGameState();
+
+                            if (document.getElementById('game-screen').classList.contains('active')) {
+                                updateDeathCount();
+                                updateDeathDisplay();
+                            }
+                        }
+                    } else {
+                        // Waiting: poll getPlayers
+                        const result = await callAPI('getPlayers', {
+                            gameCode: gameState.gameCode
+                        });
+
+                        if (result.success) {
+                            // Detect new players
+                            result.players.forEach(p => {
+                                if (!knownPlayerIds.has(p.id) && p.id !== gameState.playerId) {
+                                    const displayName = p.characterName || p.name;
+                                    showStatus(`${displayName} joined!`);
+                                    playClick();
+                                    haptic(100);
+                                }
+                            });
+                            knownPlayerIds = new Set(result.players.map(p => p.id));
+                            gameState.players = result.players;
+
+                            // Check if game started (non-host players)
+                            if (result.started && gameState.gameStatus !== 'active') {
+                                gameState.gameStatus = 'active';
+
+                                // Fetch game state to get our role
+                                const stateResult = await callAPI('getGameState', {
+                                    gameCode: gameState.gameCode
+                                });
+
+                                if (stateResult.success) {
+                                    const me = stateResult.players.find(p => p.id === gameState.playerId);
+                                    if (me) {
+                                        gameState.role = me.role;
+                                        gameState.characterName = me.characterName;
+                                        gameState.isDead = me.isDead;
+                                    }
+                                    gameState.deathCount = stateResult.deathCount;
+                                    gameState.totalPlayers = stateResult.totalPlayers;
+                                    gameState.players = stateResult.players;
+
+                                    // Assign initial task client-side
+                                    assignRandomTask();
+
+                                    saveGameState();
+                                    playChime();
+                                    haptic(300);
+                                    showScreen('game-screen');
+                                    updateGameScreen();
+                                }
+                                return;
+                            }
+
+                            if (document.getElementById('lobby-screen').classList.contains('active')) {
+                                updateLobbyDisplay();
+                            }
+                        }
+                    }
+                } catch (error) {
+                    console.error('Polling error:', error);
+                }
+            }, POLL_INTERVAL);
+        }
+
+        function stopPolling() {
+            if (pollTimer) {
+                clearInterval(pollTimer);
+                pollTimer = null;
+            }
+        }
+
+        // ==================== STATE PERSISTENCE ====================
+        function saveGameState() {
+            localStorage.setItem('wildNieuwWest', JSON.stringify(gameState));
+        }
+
+        function loadGameState() {
+            const saved = localStorage.getItem('wildNieuwWest');
+            if (saved) {
+                gameState = JSON.parse(saved);
+                return true;
+            }
+            return false;
+        }
+
+        function clearGameState() {
+            gameState = {
+                gameCode: null, playerId: null, playerName: null,
+                characterName: null, isHost: false, role: null,
+                isDead: false, currentTask: null, currentRoom: null,
+                taskAssignedAt: null, players: [], deathCount: 0,
+                totalPlayers: 0, gameStatus: 'waiting', isCreating: false
+            };
+            localStorage.removeItem('wildNieuwWest');
+        }
+
+        // ==================== LEAVE / BACK ====================
+        function leaveGame() {
+            if (!confirm('Leave the party?')) return;
+            stopPolling();
+            clearInterval(taskTimerInterval);
+            clearGameState();
+            showScreen('start-screen');
+            showStatus('Left the party');
+        }
+
+        function leaveLobby() {
+            if (!confirm('Leave the lobby?')) return;
+            stopPolling();
+            clearGameState();
+            showScreen('start-screen');
+        }
+
+        function copyGameCode() {
+            const code = gameState.gameCode;
+            if (!code) return;
+            navigator.clipboard.writeText(code).then(() => {
+                showStatus('Code copied!');
+            }).catch(() => {
+                showStatus(code, false);
+            });
+        }
+
+        // ==================== QR CODE ====================
+        function generateQRCode() {
+            const container = document.getElementById('qr-code');
+            const section = document.getElementById('qr-section');
+            if (!gameState.gameCode || typeof QRCode === 'undefined') {
+                section.style.display = 'none';
+                return;
+            }
+            container.innerHTML = '';
+            const joinUrl = window.location.href.split('?')[0] + '?code=' + gameState.gameCode;
+            try {
+                qrInstance = new QRCode(container, {
+                    text: joinUrl,
+                    width: 120,
+                    height: 120,
+                    colorDark: '#1a1a2e',
+                    colorLight: '#e8dfd0'
+                });
+                section.style.display = 'block';
+            } catch(e) {
+                section.style.display = 'none';
+            }
+        }
+
+        // ==================== SOUND EFFECTS ====================
+        let audioCtx = null;
+        function getAudioCtx() {
+            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            return audioCtx;
+        }
+
+        function playClick() {
+            try {
+                const ctx = getAudioCtx();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(800, ctx.currentTime);
+                gain.gain.setValueAtTime(0.1, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.1);
+                osc.start(ctx.currentTime);
+                osc.stop(ctx.currentTime + 0.1);
+            } catch(e) {}
+        }
+
+        function playChime() {
+            try {
+                const ctx = getAudioCtx();
+                const notes = [523, 659, 784];
+                notes.forEach((freq, i) => {
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(freq, ctx.currentTime + i * 0.15);
+                    gain.gain.setValueAtTime(0.15, ctx.currentTime + i * 0.15);
+                    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.15 + 0.4);
+                    osc.start(ctx.currentTime + i * 0.15);
+                    osc.stop(ctx.currentTime + i * 0.15 + 0.4);
+                });
+            } catch(e) {}
+        }
+
+        // ==================== HAPTIC ====================
+        function haptic(ms) {
+            try { navigator.vibrate(ms); } catch(e) {}
+        }
+
+        // ==================== OFFLINE DETECTION ====================
+        function setupOfflineDetection() {
+            window.addEventListener('offline', () => {
+                document.getElementById('offline-banner').classList.add('visible');
+            });
+            window.addEventListener('online', () => {
+                document.getElementById('offline-banner').classList.remove('visible');
+                showStatus('Back online');
+            });
+        }
+
+        // ==================== BUTTON SOUNDS ====================
+        function setupButtonSounds() {
+            document.addEventListener('click', (e) => {
+                if (e.target.closest('.btn') || e.target.closest('.character-btn')) {
+                    playClick();
+                }
+            });
+        }
+
+        // ==================== PULL TO REFRESH ====================
+        function setupPullToRefresh() {
+            const lobbyScreen = document.getElementById('lobby-screen');
+            let startY = 0;
+            let pulling = false;
+
+            lobbyScreen.addEventListener('touchstart', (e) => {
+                if (lobbyScreen.scrollTop === 0) {
+                    startY = e.touches[0].clientY;
+                    pulling = true;
+                }
+            }, { passive: true });
+
+            lobbyScreen.addEventListener('touchmove', (e) => {
+                if (!pulling) return;
+                const diff = e.touches[0].clientY - startY;
+                const indicator = document.getElementById('pull-indicator');
+                if (diff > 50 && diff < 150) {
+                    indicator.classList.add('visible');
+                } else {
+                    indicator.classList.remove('visible');
+                }
+            }, { passive: true });
+
+            lobbyScreen.addEventListener('touchend', async (e) => {
+                if (!pulling) return;
+                pulling = false;
+                const indicator = document.getElementById('pull-indicator');
+                if (indicator.classList.contains('visible')) {
+                    indicator.innerHTML = '<i class="fas fa-spinner"></i> Refreshing...';
+                    indicator.classList.add('refreshing');
+                    try {
+                        const result = await callAPI('getPlayers', { gameCode: gameState.gameCode });
+                        if (result.success) {
+                            gameState.players = result.players;
+                            updateLobbyDisplay();
+                            showStatus('Refreshed!');
+                        }
+                    } catch(e) {}
+                    indicator.classList.remove('visible', 'refreshing');
+                    indicator.innerHTML = '<i class="fas fa-arrow-down"></i> Release to refresh';
+                }
+            });
+        }
+
+        // ==================== INITIALIZATION ====================
+        function init() {
+            setupOfflineDetection();
+            setupButtonSounds();
+            setupPullToRefresh();
+
+            // Check URL params for game code (from QR)
+            const urlParams = new URLSearchParams(window.location.search);
+            const urlCode = urlParams.get('code');
+            if (urlCode) {
+                document.getElementById('join-code-input').value = urlCode.toUpperCase();
+                window.history.replaceState({}, '', window.location.pathname);
+            }
+
+            // Restore saved state
+            if (loadGameState() && gameState.gameCode) {
+                if (gameState.gameStatus === 'active' && gameState.role) {
+                    showScreen('game-screen');
+                    updateGameScreen();
+                    startTaskTimer();
+                    startPolling();
+                } else if (gameState.playerId) {
+                    updateLobbyDisplay();
+                    showScreen('lobby-screen');
+                    generateQRCode();
+                    startPolling();
+                }
+            }
+
+            // Enter key on inputs
+            document.getElementById('join-code-input').addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') joinWithCode();
+            });
+            document.getElementById('player-name-input').addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') confirmName();
+            });
+            document.getElementById('custom-character-input').addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') joinAsCustomCharacter();
+            });
+        }
+
+        init();
+    </script>
+</body>
+</html>
