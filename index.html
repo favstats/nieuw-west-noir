@@ -1360,8 +1360,8 @@
             height: 12vmin;
             border-radius: 50% 50% 45% 55% / 60% 60% 40% 40%;
             transform-origin: bottom center;
-            opacity: 0.95;
-            box-shadow: inset 0 0 2vmin rgba(255,255,255,0.15);
+            opacity: 0.75;
+            box-shadow: inset 0 0 3vmin rgba(0,0,0,0.3);
         }
         .fl__petal--1 {
             background: linear-gradient(to top, #7a5555, #a08070);
@@ -1405,8 +1405,8 @@
             width: 5vmin;
             height: 3vmin;
             border-radius: 50%;
-            background: radial-gradient(circle, #dbb84d 30%, #c9a227 70%);
-            box-shadow: 0 0 3vmin rgba(201,162,39,0.3);
+            background: radial-gradient(circle, #a08020 30%, #806018 70%);
+            box-shadow: 0 0 2vmin rgba(201,162,39,0.2);
         }
 
         /* Stem */
@@ -1414,7 +1414,7 @@
             width: 1.5vmin;
             height: 45vmin;
             margin: 0 auto;
-            background: linear-gradient(to top, #3a4a2a, #6b7a45 30%, #8a9a5b);
+            background: linear-gradient(to top, #1e2818, #3a4a2a 30%, #5a6838);
             box-shadow: inset 0.3vmin 0 0.5vmin rgba(0,0,0,0.2);
         }
         .fl--2 .fl__stem { height: 35vmin; }
@@ -1426,7 +1426,7 @@
             width: 6vmin;
             height: 8vmin;
             border-radius: 0 100% 0 100%;
-            background: linear-gradient(135deg, #6b7a45 30%, #8a9a5b);
+            background: linear-gradient(135deg, #3a4a2a 30%, #5a6838);
         }
         .fl__leaf--r {
             right: -4vmin;
@@ -1438,14 +1438,14 @@
             bottom: 50%;
             border-radius: 100% 0 100% 0;
             transform: rotate(20deg);
-            background: linear-gradient(225deg, #6b7a45 30%, #8a9a5b);
+            background: linear-gradient(225deg, #3a4a2a 30%, #5a6838);
         }
         .fl__leaf--l2 {
             left: -3.5vmin;
             bottom: 22%;
             border-radius: 100% 0 100% 0;
             transform: rotate(30deg) scale(0.7);
-            background: linear-gradient(225deg, #5a6838 30%, #7a8a4b);
+            background: linear-gradient(225deg, #2a3a1e 30%, #4a5a32);
         }
 
         /* Grass/fern shapes at base */
@@ -1455,22 +1455,22 @@
             width: 20vmin;
             height: 50vmin;
             border-top-left-radius: 100%;
-            border-left: 1.5vmin solid #6b7a45;
+            border-left: 1.5vmin solid #3a4a2a;
             mask-image: linear-gradient(to top, transparent 20%, #000 60%);
             -webkit-mask-image: linear-gradient(to top, transparent 20%, #000 60%);
         }
-        .fl__grass--1 { left: 5%; transform: rotate(15deg); height: 40vmin; border-color: #5a6838; }
-        .fl__grass--2 { left: 25%; transform: rotateY(180deg) rotate(10deg); height: 55vmin; border-color: #8a9a5b; }
-        .fl__grass--3 { right: 5%; transform: rotateY(180deg) rotate(15deg); height: 45vmin; border-color: #6b7a45; }
-        .fl__grass--4 { right: 20%; transform: rotate(5deg); height: 50vmin; border-color: #5a6838; }
-        .fl__grass--5 { left: 45%; transform: rotateY(180deg) rotate(20deg); height: 35vmin; border-color: #7a8a4b; }
+        .fl__grass--1 { left: 5%; transform: rotate(15deg); height: 40vmin; border-color: #2a3a1e; }
+        .fl__grass--2 { left: 25%; transform: rotateY(180deg) rotate(10deg); height: 55vmin; border-color: #4a5a38; }
+        .fl__grass--3 { right: 5%; transform: rotateY(180deg) rotate(15deg); height: 45vmin; border-color: #3a4a2a; }
+        .fl__grass--4 { right: 20%; transform: rotate(5deg); height: 50vmin; border-color: #2a3a1e; }
+        .fl__grass--5 { left: 45%; transform: rotateY(180deg) rotate(20deg); height: 35vmin; border-color: #3a4a2a; }
 
         /* Floating flowers (no stems, scattered) */
         .fl-float {
             position: absolute;
             width: 10vmin;
             height: 10vmin;
-            opacity: 0.7;
+            opacity: 0.45;
         }
         .fl-float .fl__petal {
             width: 4vmin;
@@ -1500,10 +1500,10 @@
         .fl-float--8 .fl__petal { background: linear-gradient(to top, #8a9a5b, #c0d4a0) !important; }
 
         /* Extra grass */
-        .fl__grass--6 { left: 40%; transform: rotate(8deg); height: 60vmin; border-color: #7a8a4b; }
-        .fl__grass--7 { right: 35%; transform: rotateY(180deg) rotate(12deg); height: 48vmin; border-color: #5a6838; }
-        .fl__grass--8 { left: 55%; transform: rotate(-5deg); height: 42vmin; border-color: #6b7a45; }
-        .fl__grass--9 { right: 42%; transform: rotateY(180deg) rotate(18deg); height: 52vmin; border-color: #8a9a5b; }
+        .fl__grass--6 { left: 40%; transform: rotate(8deg); height: 60vmin; border-color: #3a4a2a; }
+        .fl__grass--7 { right: 35%; transform: rotateY(180deg) rotate(12deg); height: 48vmin; border-color: #2a3a1e; }
+        .fl__grass--8 { left: 55%; transform: rotate(-5deg); height: 42vmin; border-color: #3a4a2a; }
+        .fl__grass--9 { right: 42%; transform: rotateY(180deg) rotate(18deg); height: 52vmin; border-color: #4a5a38; }
 
         /* Glow particles */
         .fl__glow {
@@ -1710,8 +1710,8 @@
             width: 2vmin;
             height: 2vmin;
             border-radius: 50%;
-            background: rgba(201,162,39,0.5);
-            box-shadow: 0 0 1vmin rgba(201,162,39,0.3);
+            background: rgba(201,162,39,0.35);
+            box-shadow: 0 0 1vmin rgba(201,162,39,0.2);
         }
         .gold-dots--1 { bottom: 28%; left: 18%; }
         .gold-dots--2 { bottom: 35%; left: 22%; width: 1.2vmin; height: 1.2vmin; }
