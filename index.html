@@ -1170,7 +1170,7 @@
 
         .leave-btn {
             position: fixed;
-            top: 20px;
+            top: 40px;
             right: 20px;
             padding: 8px 14px;
             background: transparent;
@@ -1557,6 +1557,39 @@
             flex: 1;
             font-size: 0.9rem;
             padding: 10px;
+        }
+
+        /* Inbox message item */
+        .inbox-item {
+            border-left: 3px solid var(--gold-dark);
+            padding: 10px 12px;
+            margin-bottom: 10px;
+            background: rgba(0,0,0,0.3);
+        }
+        .inbox-item--lastwords {
+            border-left-color: var(--wine);
+        }
+        .inbox-item__from {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            color: var(--gold);
+            margin-bottom: 3px;
+        }
+        .inbox-item--lastwords .inbox-item__from {
+            color: var(--wine-light);
+        }
+        .inbox-item__text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.95rem;
+            font-style: italic;
+            color: var(--cream);
+            line-height: 1.4;
+        }
+        .inbox-item__time {
+            font-size: 0.6rem;
+            color: var(--text-muted);
+            margin-top: 4px;
         }
 
         /* Received note toast */
@@ -2366,6 +2399,17 @@
         </div>
     </div>
 
+    <!-- Inbox Modal -->
+    <div class="note-modal" id="inbox-modal">
+        <div class="note-modal__card" style="max-height: 70vh; overflow-y: auto;">
+            <div class="note-modal__title"><i class="fas fa-inbox"></i> Your Messages</div>
+            <div id="inbox-list" style="margin-bottom: 16px;">
+                <p style="color: var(--text-muted); text-align: center; font-style: italic;">No messages yet...</p>
+            </div>
+            <button class="btn btn-secondary" onclick="closeInbox()" style="width: 100%;">Close</button>
+        </div>
+    </div>
+
     <!-- Note Toast -->
     <div class="note-toast" id="note-toast" onclick="this.classList.remove('visible')">
         <div class="note-toast__label">ANONYMOUS NOTE</div>
@@ -2684,7 +2728,10 @@
             <!-- Action buttons -->
             <div class="notes-section">
                 <button class="btn-send-note" onclick="openNoteModal()">
-                    <i class="fas fa-envelope"></i> Send Anonymous Note
+                    <i class="fas fa-pen-fancy"></i> Send Anonymous Note
+                </button>
+                <button class="btn-send-note" onclick="openInbox()" style="margin-top: 8px;">
+                    <i class="fas fa-inbox"></i> Inbox <span id="inbox-badge" style="display:none; background: var(--wine); color: var(--cream); padding: 1px 6px; border-radius: 50%; font-size: 0.7rem; margin-left: 6px;">0</span>
                 </button>
             </div>
             <button class="btn-lights-out" id="btn-lights-out" onclick="toggleLightsOut()" style="display: none;">
@@ -3798,11 +3845,50 @@
 
                 if (msg.type === 'note') {
                     showNoteToast(msg.message);
+                    addToInbox(msg);
                 } else if (msg.type === 'lastwords') {
                     showNoteToast(msg.message);
+                    addToInbox(msg);
                     triggerDeathFlash();
                 }
             });
+        }
+
+        // ==================== INBOX ====================
+        let inboxMessages = [];
+
+        function openInbox() {
+            const list = document.getElementById('inbox-list');
+            if (inboxMessages.length === 0) {
+                list.innerHTML = '<p style="color: var(--text-muted); text-align: center; font-style: italic;">No messages yet...</p>';
+            } else {
+                list.innerHTML = inboxMessages.map(msg => {
+                    const isLastWords = msg.type === 'lastwords';
+                    const time = new Date(msg.time);
+                    const timeStr = time.getHours().toString().padStart(2,'0') + ':' + time.getMinutes().toString().padStart(2,'0');
+                    return `<div class="inbox-item ${isLastWords ? 'inbox-item--lastwords' : ''}">
+                        <div class="inbox-item__from">${isLastWords ? 'LAST WORDS' : 'ANONYMOUS NOTE'}</div>
+                        <div class="inbox-item__text">${msg.message}</div>
+                        <div class="inbox-item__time">${timeStr}</div>
+                    </div>`;
+                }).join('');
+            }
+            document.getElementById('inbox-modal').classList.add('visible');
+        }
+
+        function closeInbox() {
+            document.getElementById('inbox-modal').classList.remove('visible');
+            // Clear badge
+            const badge = document.getElementById('inbox-badge');
+            badge.style.display = 'none';
+        }
+
+        function addToInbox(msg) {
+            inboxMessages.unshift(msg);
+            // Show badge
+            const badge = document.getElementById('inbox-badge');
+            badge.textContent = inboxMessages.length;
+            badge.style.display = 'inline';
         }
 
         function showNoteToast(text) {
