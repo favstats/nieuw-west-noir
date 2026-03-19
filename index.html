@@ -44,7 +44,8 @@
 
         body {
             font-family: 'Cormorant Garamond', Georgia, serif;
-            background: #1a1c16;
+            background: #1e2018 url('bg-pattern.svg');
+            background-size: 600px 600px;
             color: var(--cream);
             display: flex;
             flex-direction: column;
@@ -1520,54 +1521,7 @@
     <div class="dead-overlay" id="dead-overlay"></div>
 
     <!-- Static Floral Background -->
-    <div class="floral-bg">
-      <!-- Bottom flowers (tall, with stems) -->
-      <div class="fl fl--1">
-        <div class="fl__petals"><div class="fl__petal fl__petal--1"></div><div class="fl__petal fl__petal--2"></div><div class="fl__petal fl__petal--3"></div><div class="fl__petal fl__petal--4"></div><div class="fl__center"></div></div>
-        <div class="fl__stem"></div><div class="fl__leaf fl__leaf--l"></div><div class="fl__leaf fl__leaf--r"></div><div class="fl__leaf fl__leaf--l2"></div>
-      </div>
-      <div class="fl fl--2">
-        <div class="fl__petals"><div class="fl__petal fl__petal--1"></div><div class="fl__petal fl__petal--2"></div><div class="fl__petal fl__petal--3"></div><div class="fl__petal fl__petal--4"></div><div class="fl__center"></div></div>
-        <div class="fl__stem"></div><div class="fl__leaf fl__leaf--r"></div><div class="fl__leaf fl__leaf--l"></div>
-      </div>
-      <div class="fl fl--3">
-        <div class="fl__petals"><div class="fl__petal fl__petal--1"></div><div class="fl__petal fl__petal--2"></div><div class="fl__petal fl__petal--3"></div><div class="fl__petal fl__petal--4"></div><div class="fl__center"></div></div>
-        <div class="fl__stem"></div><div class="fl__leaf fl__leaf--l"></div><div class="fl__leaf fl__leaf--r"></div>
-      </div>
-      <!-- Extra bottom flowers -->
-      <div class="fl fl--4">
-        <div class="fl__petals"><div class="fl__petal fl__petal--1"></div><div class="fl__petal fl__petal--2"></div><div class="fl__petal fl__petal--3"></div><div class="fl__petal fl__petal--4"></div><div class="fl__center"></div></div>
-        <div class="fl__stem"></div><div class="fl__leaf fl__leaf--l"></div><div class="fl__leaf fl__leaf--r"></div>
-      </div>
-      <div class="fl fl--5">
-        <div class="fl__petals"><div class="fl__petal fl__petal--1"></div><div class="fl__petal fl__petal--2"></div><div class="fl__petal fl__petal--3"></div><div class="fl__petal fl__petal--4"></div><div class="fl__center"></div></div>
-        <div class="fl__stem"></div><div class="fl__leaf fl__leaf--r"></div><div class="fl__leaf fl__leaf--l"></div>
-      </div>
-      <!-- Floating flowers (no stems, scattered higher) -->
-      <div class="fl-float fl-float--1"><div class="fl__petal fl__petal--1"></div><div class="fl__petal fl__petal--2"></div><div class="fl__petal fl__petal--3"></div><div class="fl__center"></div></div>
-      <div class="fl-float fl-float--2"><div class="fl__petal fl__petal--1"></div><div class="fl__petal fl__petal--2"></div><div class="fl__petal fl__petal--3"></div><div class="fl__center"></div></div>
-      <div class="fl-float fl-float--3"><div class="fl__petal fl__petal--1"></div><div class="fl__petal fl__petal--2"></div><div class="fl__petal fl__petal--3"></div><div class="fl__center"></div></div>
-      <div class="fl-float fl-float--4"><div class="fl__petal fl__petal--1"></div><div class="fl__petal fl__petal--2"></div><div class="fl__petal fl__petal--3"></div><div class="fl__center"></div></div>
-      <div class="fl-float fl-float--5"><div class="fl__petal fl__petal--1"></div><div class="fl__petal fl__petal--2"></div><div class="fl__petal fl__petal--3"></div><div class="fl__center"></div></div>
-      <div class="fl-float fl-float--6"><div class="fl__petal fl__petal--1"></div><div class="fl__petal fl__petal--2"></div><div class="fl__petal fl__petal--3"></div><div class="fl__center"></div></div>
-      <!-- Grass/fern shapes -->
-      <div class="fl__grass fl__grass--1"></div>
-      <div class="fl__grass fl__grass--2"></div>
-      <div class="fl__grass fl__grass--3"></div>
-      <div class="fl__grass fl__grass--4"></div>
-      <div class="fl__grass fl__grass--5"></div>
-      <div class="fl__grass fl__grass--6"></div>
-      <div class="fl__grass fl__grass--7"></div>
-      <!-- Glow particles -->
-      <div class="fl__glow fl__glow--1"></div>
-      <div class="fl__glow fl__glow--2"></div>
-      <div class="fl__glow fl__glow--3"></div>
-      <div class="fl__glow fl__glow--4"></div>
-      <div class="fl__glow fl__glow--5"></div>
-      <div class="fl__glow fl__glow--6"></div>
-      <div class="fl__glow fl__glow--7"></div>
-      <div class="fl__glow fl__glow--8"></div>
-    </div>
+    <!-- Background pattern is in bg-pattern.svg -->
 
     <!-- Leave Button -->
     <button class="leave-btn" id="leave-btn" style="display: none;" onclick="leaveGame()">

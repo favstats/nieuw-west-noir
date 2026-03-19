@@ -1,127 +1,215 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
-  <rect width="400" height="400" fill="#2a2a28"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600">
+  <rect width="600" height="600" fill="#1e2018"/>
 
-  <!-- ========== WHIPLASH CURVES (coup de fouet) ========== -->
-  <!-- Primary whiplash — the signature Art Nouveau S-curve -->
-  <path d="M0 200 C30 180, 60 120, 100 140 S160 220, 200 200 S280 120, 320 160 S380 220, 400 200"
-        stroke="rgba(201,162,39,0.22)" stroke-width="2" fill="none"/>
-  <path d="M0 200 C30 220, 60 280, 100 260 S160 180, 200 200 S280 280, 320 240 S380 180, 400 200"
-        stroke="rgba(201,162,39,0.18)" stroke-width="1.5" fill="none"/>
-  <!-- Mirror whiplash offset -->
-  <path d="M0 100 C40 80, 80 30, 120 50 S180 130, 220 100 S300 30, 340 60 S390 120, 400 100"
-        stroke="rgba(138,154,91,0.20)" stroke-width="1.5" fill="none"/>
-  <path d="M0 300 C40 320, 80 370, 120 350 S180 270, 220 300 S300 370, 340 340 S390 280, 400 300"
-        stroke="rgba(138,154,91,0.20)" stroke-width="1.5" fill="none"/>
+  <!-- ====== CENTRAL MEDALLION FLOWER ====== -->
+  <!-- Large surrounding leaves (sage) -->
+  <path d="M300 180 Q250 150 220 180 Q240 200 270 210 Q290 200 300 180Z" fill="#8a9a5b"/>
+  <path d="M300 180 Q350 150 380 180 Q360 200 330 210 Q310 200 300 180Z" fill="#8a9a5b"/>
+  <path d="M300 420 Q250 450 220 420 Q240 400 270 390 Q290 400 300 420Z" fill="#7a8a4b"/>
+  <path d="M300 420 Q350 450 380 420 Q360 400 330 390 Q310 400 300 420Z" fill="#7a8a4b"/>
+  <!-- Outer leaf ring -->
+  <path d="M200 300 Q170 260 190 230 Q210 250 220 280 Q210 290 200 300Z" fill="#6b7a45"/>
+  <path d="M400 300 Q430 260 410 230 Q390 250 380 280 Q390 290 400 300Z" fill="#6b7a45"/>
+  <path d="M200 300 Q170 340 190 370 Q210 350 220 320 Q210 310 200 300Z" fill="#6b7a45"/>
+  <path d="M400 300 Q430 340 410 370 Q390 350 380 320 Q390 310 400 300Z" fill="#6b7a45"/>
+  <!-- Large petals (dusty pink) -->
+  <path d="M300 220 Q280 250 270 280 Q285 290 300 300 Q315 290 330 280 Q320 250 300 220Z" fill="#d4a898"/>
+  <path d="M300 380 Q280 350 270 320 Q285 310 300 300 Q315 310 330 320 Q320 350 300 380Z" fill="#c9978a"/>
+  <path d="M220 300 Q250 280 280 270 Q290 285 300 300 Q290 315 280 330 Q250 320 220 300Z" fill="#d4a898"/>
+  <path d="M380 300 Q350 280 320 270 Q310 285 300 300 Q310 315 320 330 Q350 320 380 300Z" fill="#c9978a"/>
+  <!-- Diagonal petals -->
+  <path d="M250 240 Q265 260 280 280 Q290 275 300 300 Q275 285 250 270Z" fill="#dab0a0"/>
+  <path d="M350 240 Q335 260 320 280 Q310 275 300 300 Q325 285 350 270Z" fill="#dab0a0"/>
+  <path d="M250 360 Q265 340 280 320 Q290 325 300 300 Q275 315 250 330Z" fill="#c4907a"/>
+  <path d="M350 360 Q335 340 320 320 Q310 325 300 300 Q325 315 350 330Z" fill="#c4907a"/>
+  <!-- White/cream center bloom -->
+  <circle cx="300" cy="300" r="28" fill="#e8dfd0"/>
+  <circle cx="300" cy="300" r="18" fill="#f0ebe0"/>
+  <circle cx="300" cy="300" r="10" fill="#c9a227"/>
+  <!-- Center petal details -->
+  <path d="M300 272 Q292 280 288 290 Q294 295 300 300 Q306 295 312 290 Q308 280 300 272Z" fill="#f5f0e5"/>
+  <path d="M300 328 Q292 320 288 310 Q294 305 300 300 Q306 305 312 310 Q308 320 300 328Z" fill="#e0d8c8"/>
+  <path d="M272 300 Q280 292 290 288 Q295 294 300 300 Q295 306 290 312 Q280 308 272 300Z" fill="#f5f0e5"/>
+  <path d="M328 300 Q320 292 310 288 Q305 294 300 300 Q305 306 310 312 Q320 308 328 300Z" fill="#e0d8c8"/>
 
-  <!-- ========== LILY / WISTERIA STEMS ========== -->
-  <!-- Central ascending vine -->
-  <path d="M200 400 C195 360, 180 320, 190 280 S220 240, 210 200 S180 160, 195 120 S215 80, 200 40 C198 20, 202 10, 200 0"
-        stroke="rgba(107,122,69,0.28)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-  <!-- Left vine -->
-  <path d="M80 400 C75 360, 60 330, 70 290 S100 250, 85 210 S55 170, 72 130 S95 90, 80 50 C78 25, 82 10, 80 0"
-        stroke="rgba(107,122,69,0.22)" stroke-width="2" fill="none" stroke-linecap="round"/>
-  <!-- Right vine -->
-  <path d="M320 400 C325 360, 340 330, 330 290 S300 250, 315 210 S345 170, 328 130 S305 90, 320 50 C322 25, 318 10, 320 0"
-        stroke="rgba(107,122,69,0.22)" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <!-- ====== SCROLLWORK / WHIPLASH CURVES ====== -->
+  <!-- Gold scrolls from center -->
+  <path d="M220 230 Q190 200 180 160 Q175 130 200 120 Q210 140 205 170 Q200 190 220 230" stroke="#a89850" stroke-width="3" fill="none"/>
+  <path d="M380 230 Q410 200 420 160 Q425 130 400 120 Q390 140 395 170 Q400 190 380 230" stroke="#a89850" stroke-width="3" fill="none"/>
+  <path d="M220 370 Q190 400 180 440 Q175 470 200 480 Q210 460 205 430 Q200 410 220 370" stroke="#a89850" stroke-width="3" fill="none"/>
+  <path d="M380 370 Q410 400 420 440 Q425 470 400 480 Q390 460 395 430 Q400 410 380 370" stroke="#a89850" stroke-width="3" fill="none"/>
+  <!-- Inner scrolls -->
+  <path d="M200 120 Q220 100 250 110 Q235 125 215 130" stroke="#c9a227" stroke-width="2" fill="none"/>
+  <path d="M400 120 Q380 100 350 110 Q365 125 385 130" stroke="#c9a227" stroke-width="2" fill="none"/>
+  <path d="M200 480 Q220 500 250 490 Q235 475 215 470" stroke="#c9a227" stroke-width="2" fill="none"/>
+  <path d="M400 480 Q380 500 350 490 Q365 475 385 470" stroke="#c9a227" stroke-width="2" fill="none"/>
 
-  <!-- ========== LILY FLOWERS on central vine ========== -->
-  <!-- Lily at y=280 -->
-  <path d="M190 280 C175 265, 165 255, 160 240" stroke="rgba(212,168,152,0.30)" stroke-width="1.5" fill="none"/>
-  <path d="M190 280 C205 265, 215 255, 220 240" stroke="rgba(212,168,152,0.30)" stroke-width="1.5" fill="none"/>
-  <path d="M160 240 C155 230, 158 222, 165 218 C170 225, 175 235, 190 280Z" fill="rgba(212,168,152,0.20)"/>
-  <path d="M220 240 C225 230, 222 222, 215 218 C210 225, 205 235, 190 280Z" fill="rgba(212,168,152,0.20)"/>
-  <path d="M190 280 C185 268, 182 258, 185 245 C188 255, 192 268, 190 280Z" fill="rgba(232,223,208,0.18)"/>
-  <circle cx="190" cy="242" r="2.5" fill="rgba(201,162,39,0.35)"/>
+  <!-- ====== CORNER FLOWERS (top-left) ====== -->
+  <path d="M80 80 Q60 100 70 120 Q85 110 90 90Z" fill="#d4a898"/>
+  <path d="M80 80 Q100 60 120 70 Q110 85 90 90Z" fill="#dab0a0"/>
+  <path d="M80 80 Q60 60 50 70 Q65 80 70 85Z" fill="#c9978a"/>
+  <circle cx="85" cy="85" r="8" fill="#e8dfd0"/>
+  <circle cx="85" cy="85" r="4" fill="#c9a227"/>
+  <!-- Leaves around corner flower -->
+  <path d="M50 120 Q30 100 20 70 Q35 80 50 100Z" fill="#8a9a5b"/>
+  <path d="M120 50 Q100 30 70 20 Q80 35 100 50Z" fill="#8a9a5b"/>
+  <path d="M40 50 Q20 30 10 10 Q30 20 40 40Z" fill="#6b7a45"/>
+  <path d="M130 90 Q150 70 160 50 Q145 65 130 80Z" fill="#6b7a45"/>
+  <path d="M90 130 Q70 150 50 160 Q65 145 80 130Z" fill="#6b7a45"/>
 
-  <!-- Lily at y=120 -->
-  <path d="M195 120 C180 105, 170 95, 165 80" stroke="rgba(212,168,152,0.28)" stroke-width="1.5" fill="none"/>
-  <path d="M195 120 C210 105, 220 95, 225 80" stroke="rgba(212,168,152,0.28)" stroke-width="1.5" fill="none"/>
-  <path d="M165 80 C160 70, 163 62, 170 58 C175 65, 180 75, 195 120Z" fill="rgba(212,168,152,0.18)"/>
-  <path d="M225 80 C230 70, 227 62, 220 58 C215 65, 210 75, 195 120Z" fill="rgba(212,168,152,0.18)"/>
-  <circle cx="195" cy="82" r="2" fill="rgba(201,162,39,0.30)"/>
+  <!-- ====== CORNER FLOWERS (top-right) ====== -->
+  <path d="M520 80 Q540 100 530 120 Q515 110 510 90Z" fill="#d4a898"/>
+  <path d="M520 80 Q500 60 480 70 Q490 85 510 90Z" fill="#dab0a0"/>
+  <path d="M520 80 Q540 60 550 70 Q535 80 530 85Z" fill="#c9978a"/>
+  <circle cx="515" cy="85" r="8" fill="#e8dfd0"/>
+  <circle cx="515" cy="85" r="4" fill="#c9a227"/>
+  <path d="M550 120 Q570 100 580 70 Q565 80 550 100Z" fill="#8a9a5b"/>
+  <path d="M480 50 Q500 30 530 20 Q520 35 500 50Z" fill="#8a9a5b"/>
+  <path d="M560 50 Q580 30 590 10 Q570 20 560 40Z" fill="#6b7a45"/>
 
-  <!-- ========== WISTERIA CLUSTERS (hanging teardrop shapes) ========== -->
-  <!-- Left vine wisteria at y=210 -->
-  <ellipse cx="78" cy="215" rx="6" ry="10" fill="rgba(148,100,130,0.18)" transform="rotate(-10 78 215)"/>
-  <ellipse cx="82" cy="228" rx="5" ry="8" fill="rgba(148,100,130,0.15)" transform="rotate(5 82 228)"/>
-  <ellipse cx="76" cy="238" rx="4" ry="6" fill="rgba(148,100,130,0.12)"/>
-  <!-- Right vine wisteria at y=210 -->
-  <ellipse cx="322" cy="215" rx="6" ry="10" fill="rgba(148,100,130,0.18)" transform="rotate(10 322 215)"/>
-  <ellipse cx="318" cy="228" rx="5" ry="8" fill="rgba(148,100,130,0.15)" transform="rotate(-5 318 228)"/>
-  <ellipse cx="324" cy="238" rx="4" ry="6" fill="rgba(148,100,130,0.12)"/>
+  <!-- ====== CORNER FLOWERS (bottom-left) ====== -->
+  <path d="M80 520 Q60 500 70 480 Q85 490 90 510Z" fill="#d4a898"/>
+  <path d="M80 520 Q100 540 120 530 Q110 515 90 510Z" fill="#dab0a0"/>
+  <circle cx="85" cy="515" r="8" fill="#e8dfd0"/>
+  <circle cx="85" cy="515" r="4" fill="#c9a227"/>
+  <path d="M50 480 Q30 500 20 530 Q35 520 50 500Z" fill="#8a9a5b"/>
+  <path d="M120 550 Q100 570 70 580 Q80 565 100 550Z" fill="#8a9a5b"/>
 
-  <!-- ========== LEAVES (asymmetric, Art Nouveau style) ========== -->
-  <!-- Central vine leaves -->
-  <path d="M210 200 C225 190, 240 185, 245 195 C235 198, 220 200, 210 200Z" fill="rgba(138,154,91,0.25)"/>
-  <path d="M190 200 C175 190, 160 185, 155 195 C165 198, 180 200, 190 200Z" fill="rgba(138,154,91,0.22)"/>
-  <path d="M205 160 C220 148, 235 145, 238 155 C228 158, 215 158, 205 160Z" fill="rgba(107,122,69,0.22)"/>
-  <path d="M195 160 C180 148, 165 145, 162 155 C172 158, 185 158, 195 160Z" fill="rgba(107,122,69,0.20)"/>
-  <path d="M215 240 C232 232, 248 230, 250 240 C238 242, 225 240, 215 240Z" fill="rgba(138,154,91,0.22)"/>
-  <path d="M185 320 C168 312, 152 310, 150 320 C162 322, 175 320, 185 320Z" fill="rgba(138,154,91,0.20)"/>
-  <!-- Left vine leaves -->
-  <path d="M70 290 C55 280, 42 278, 40 288 C50 290, 62 290, 70 290Z" fill="rgba(138,154,91,0.20)"/>
-  <path d="M85 250 C100 240, 112 238, 114 248 C104 250, 92 250, 85 250Z" fill="rgba(107,122,69,0.18)"/>
-  <path d="M72 130 C57 120, 44 118, 42 128 C52 130, 64 130, 72 130Z" fill="rgba(138,154,91,0.20)"/>
-  <!-- Right vine leaves -->
-  <path d="M330 290 C345 280, 358 278, 360 288 C350 290, 338 290, 330 290Z" fill="rgba(138,154,91,0.20)"/>
-  <path d="M315 250 C300 240, 288 238, 286 248 C296 250, 308 250, 315 250Z" fill="rgba(107,122,69,0.18)"/>
-  <path d="M328 130 C343 120, 356 118, 358 128 C348 130, 336 130, 328 130Z" fill="rgba(138,154,91,0.20)"/>
+  <!-- ====== CORNER FLOWERS (bottom-right) ====== -->
+  <path d="M520 520 Q540 500 530 480 Q515 490 510 510Z" fill="#d4a898"/>
+  <path d="M520 520 Q500 540 480 530 Q490 515 510 510Z" fill="#dab0a0"/>
+  <circle cx="515" cy="515" r="8" fill="#e8dfd0"/>
+  <circle cx="515" cy="515" r="4" fill="#c9a227"/>
+  <path d="M550 480 Q570 500 580 530 Q565 520 550 500Z" fill="#8a9a5b"/>
+  <path d="M480 550 Q500 570 530 580 Q520 565 500 550Z" fill="#8a9a5b"/>
 
-  <!-- ========== DRAGONFLY (Japanese-inspired) ========== -->
-  <!-- Body -->
-  <path d="M290 80 C292 75, 295 65, 293 55" stroke="rgba(201,162,39,0.25)" stroke-width="1.5" fill="none"/>
-  <!-- Wings -->
-  <path d="M290 80 C275 70, 268 60, 272 55 C278 58, 285 68, 290 80Z" fill="rgba(232,223,208,0.12)" stroke="rgba(201,162,39,0.18)" stroke-width="0.5"/>
-  <path d="M290 80 C305 70, 312 60, 308 55 C302 58, 295 68, 290 80Z" fill="rgba(232,223,208,0.12)" stroke="rgba(201,162,39,0.18)" stroke-width="0.5"/>
-  <path d="M290 80 C278 74, 270 68, 274 62 C280 65, 286 72, 290 80Z" fill="rgba(232,223,208,0.08)" stroke="rgba(201,162,39,0.14)" stroke-width="0.5"/>
-  <path d="M290 80 C302 74, 310 68, 306 62 C300 65, 294 72, 290 80Z" fill="rgba(232,223,208,0.08)" stroke="rgba(201,162,39,0.14)" stroke-width="0.5"/>
-  <circle cx="293" cy="53" r="2" fill="rgba(201,162,39,0.22)"/>
+  <!-- ====== SIDE FLOWERS (left & right) ====== -->
+  <!-- Left -->
+  <path d="M0 300 Q20 280 40 290 Q30 300 20 310 Q10 305 0 300Z" fill="#d4a898"/>
+  <path d="M0 300 Q20 320 40 310 Q30 300 20 290 Q10 295 0 300Z" fill="#c9978a"/>
+  <circle cx="25" cy="300" r="6" fill="#e8dfd0"/>
+  <circle cx="25" cy="300" r="3" fill="#c9a227"/>
+  <path d="M40 270 Q60 250 70 230 Q55 245 40 260Z" fill="#8a9a5b"/>
+  <path d="M40 330 Q60 350 70 370 Q55 355 40 340Z" fill="#8a9a5b"/>
+  <!-- Right -->
+  <path d="M600 300 Q580 280 560 290 Q570 300 580 310 Q590 305 600 300Z" fill="#d4a898"/>
+  <path d="M600 300 Q580 320 560 310 Q570 300 580 290 Q590 295 600 300Z" fill="#c9978a"/>
+  <circle cx="575" cy="300" r="6" fill="#e8dfd0"/>
+  <circle cx="575" cy="300" r="3" fill="#c9a227"/>
+  <path d="M560 270 Q540 250 530 230 Q545 245 560 260Z" fill="#8a9a5b"/>
+  <path d="M560 330 Q540 350 530 370 Q545 355 560 340Z" fill="#8a9a5b"/>
 
-  <!-- ========== BUTTERFLY (opposite side) ========== -->
-  <path d="M110 340 C95 325, 88 310, 95 305 C102 312, 108 325, 110 340Z" fill="rgba(148,100,130,0.16)" stroke="rgba(201,162,39,0.15)" stroke-width="0.5"/>
-  <path d="M110 340 C125 325, 132 310, 125 305 C118 312, 112 325, 110 340Z" fill="rgba(148,100,130,0.16)" stroke="rgba(201,162,39,0.15)" stroke-width="0.5"/>
-  <path d="M110 340 C100 332, 94 320, 98 316 C104 320, 108 330, 110 340Z" fill="rgba(212,168,152,0.12)" stroke="rgba(201,162,39,0.12)" stroke-width="0.5"/>
-  <path d="M110 340 C120 332, 126 320, 122 316 C116 320, 112 330, 110 340Z" fill="rgba(212,168,152,0.12)" stroke="rgba(201,162,39,0.12)" stroke-width="0.5"/>
-  <path d="M110 340 C110 345, 109 352, 108 358" stroke="rgba(201,162,39,0.18)" stroke-width="0.8" fill="none"/>
+  <!-- ====== TOP & BOTTOM CENTER FLOWERS ====== -->
+  <!-- Top -->
+  <path d="M300 0 Q280 20 290 40 Q300 30 310 40 Q320 20 300 0Z" fill="#d4a898"/>
+  <circle cx="300" cy="30" r="6" fill="#e8dfd0"/>
+  <circle cx="300" cy="30" r="3" fill="#c9a227"/>
+  <path d="M270 40 Q250 20 230 10 Q245 25 260 40Z" fill="#8a9a5b"/>
+  <path d="M330 40 Q350 20 370 10 Q355 25 340 40Z" fill="#8a9a5b"/>
+  <!-- Bottom -->
+  <path d="M300 600 Q280 580 290 560 Q300 570 310 560 Q320 580 300 600Z" fill="#d4a898"/>
+  <circle cx="300" cy="570" r="6" fill="#e8dfd0"/>
+  <circle cx="300" cy="570" r="3" fill="#c9a227"/>
+  <path d="M270 560 Q250 580 230 590 Q245 575 260 560Z" fill="#8a9a5b"/>
+  <path d="M330 560 Q350 580 370 590 Q355 575 340 560Z" fill="#8a9a5b"/>
 
-  <!-- ========== PEACOCK FEATHER EYES (scattered) ========== -->
-  <circle cx="50" cy="60" r="8" fill="none" stroke="rgba(138,154,91,0.18)" stroke-width="1.5"/>
-  <circle cx="50" cy="60" r="4" fill="rgba(107,122,69,0.15)"/>
-  <circle cx="50" cy="60" r="2" fill="rgba(201,162,39,0.25)"/>
+  <!-- ====== LARGE VINE SYSTEM ====== -->
+  <!-- Sweeping vines connecting corners to center -->
+  <path d="M85 85 Q150 120 200 180 Q240 230 270 270" stroke="#6b7a45" stroke-width="3.5" fill="none"/>
+  <path d="M515 85 Q450 120 400 180 Q360 230 330 270" stroke="#6b7a45" stroke-width="3.5" fill="none"/>
+  <path d="M85 515 Q150 480 200 420 Q240 370 270 330" stroke="#6b7a45" stroke-width="3.5" fill="none"/>
+  <path d="M515 515 Q450 480 400 420 Q360 370 330 330" stroke="#6b7a45" stroke-width="3.5" fill="none"/>
+  <!-- Vine leaves along the paths -->
+  <path d="M150 130 Q135 115 125 125 Q135 135 150 130Z" fill="#8a9a5b"/>
+  <path d="M180 165 Q195 150 190 140 Q178 148 175 160Z" fill="#7a8a4b"/>
+  <path d="M450 130 Q465 115 475 125 Q465 135 450 130Z" fill="#8a9a5b"/>
+  <path d="M420 165 Q405 150 410 140 Q422 148 425 160Z" fill="#7a8a4b"/>
+  <path d="M150 470 Q135 485 125 475 Q135 465 150 470Z" fill="#8a9a5b"/>
+  <path d="M450 470 Q465 485 475 475 Q465 465 450 470Z" fill="#8a9a5b"/>
 
-  <circle cx="350" cy="360" r="8" fill="none" stroke="rgba(138,154,91,0.18)" stroke-width="1.5"/>
-  <circle cx="350" cy="360" r="4" fill="rgba(107,122,69,0.15)"/>
-  <circle cx="350" cy="360" r="2" fill="rgba(201,162,39,0.25)"/>
+  <!-- ====== LARGE DECORATIVE LEAVES ====== -->
+  <!-- Top center large leaves -->
+  <path d="M250 100 Q230 70 240 40 Q260 60 270 90 Q260 95 250 100Z" fill="#8a9a5b"/>
+  <path d="M350 100 Q370 70 360 40 Q340 60 330 90 Q340 95 350 100Z" fill="#8a9a5b"/>
+  <path d="M280 80 Q290 50 300 30 Q310 50 320 80 Q310 85 300 90 Q290 85 280 80Z" fill="#7a8a4b"/>
+  <!-- Bottom center large leaves -->
+  <path d="M250 500 Q230 530 240 560 Q260 540 270 510 Q260 505 250 500Z" fill="#8a9a5b"/>
+  <path d="M350 500 Q370 530 360 560 Q340 540 330 510 Q340 505 350 500Z" fill="#8a9a5b"/>
+  <!-- Side large leaves -->
+  <path d="M100 250 Q70 230 40 240 Q60 260 90 270 Q95 260 100 250Z" fill="#7a8a4b"/>
+  <path d="M100 350 Q70 370 40 360 Q60 340 90 330 Q95 340 100 350Z" fill="#7a8a4b"/>
+  <path d="M500 250 Q530 230 560 240 Q540 260 510 270 Q505 260 500 250Z" fill="#7a8a4b"/>
+  <path d="M500 350 Q530 370 560 360 Q540 340 510 330 Q505 340 500 350Z" fill="#7a8a4b"/>
 
-  <circle cx="140" cy="50" r="6" fill="none" stroke="rgba(212,168,152,0.15)" stroke-width="1"/>
-  <circle cx="140" cy="50" r="3" fill="rgba(212,168,152,0.12)"/>
-  <circle cx="140" cy="50" r="1.5" fill="rgba(201,162,39,0.20)"/>
+  <!-- ====== SMALL SCATTERED FLOWERS ====== -->
+  <!-- Between corners and center -->
+  <path d="M160 220 Q150 230 155 240 Q165 235 170 225Z" fill="#dab0a0"/>
+  <path d="M160 220 Q170 210 165 200 Q155 205 150 215Z" fill="#d4a898"/>
+  <circle cx="162" cy="220" r="4" fill="#e8dfd0"/>
+  <circle cx="162" cy="220" r="2" fill="#c9a227"/>
 
-  <circle cx="260" cy="370" r="6" fill="none" stroke="rgba(212,168,152,0.15)" stroke-width="1"/>
-  <circle cx="260" cy="370" r="3" fill="rgba(212,168,152,0.12)"/>
-  <circle cx="260" cy="370" r="1.5" fill="rgba(201,162,39,0.20)"/>
+  <path d="M440 220 Q450 230 445 240 Q435 235 430 225Z" fill="#dab0a0"/>
+  <path d="M440 220 Q430 210 435 200 Q445 205 450 215Z" fill="#d4a898"/>
+  <circle cx="438" cy="220" r="4" fill="#e8dfd0"/>
+  <circle cx="438" cy="220" r="2" fill="#c9a227"/>
 
-  <!-- ========== GOLD ACCENT DOTS (scattered like Klimt) ========== -->
-  <circle cx="30" cy="150" r="2" fill="rgba(201,162,39,0.25)"/>
-  <circle cx="370" cy="150" r="2" fill="rgba(201,162,39,0.25)"/>
-  <circle cx="150" cy="180" r="1.5" fill="rgba(201,162,39,0.20)"/>
-  <circle cx="250" cy="180" r="1.5" fill="rgba(201,162,39,0.20)"/>
-  <circle cx="100" cy="100" r="1.5" fill="rgba(219,184,77,0.22)"/>
-  <circle cx="300" cy="300" r="1.5" fill="rgba(219,184,77,0.22)"/>
-  <circle cx="180" cy="350" r="1.5" fill="rgba(201,162,39,0.18)"/>
-  <circle cx="220" cy="50" r="1.5" fill="rgba(201,162,39,0.18)"/>
-  <circle cx="40" cy="340" r="1" fill="rgba(219,184,77,0.18)"/>
-  <circle cx="360" cy="60" r="1" fill="rgba(219,184,77,0.18)"/>
-  <circle cx="160" cy="260" r="1.5" fill="rgba(201,162,39,0.16)"/>
-  <circle cx="240" cy="140" r="1.5" fill="rgba(201,162,39,0.16)"/>
+  <path d="M160 380 Q150 370 155 360 Q165 365 170 375Z" fill="#dab0a0"/>
+  <circle cx="162" cy="378" r="4" fill="#e8dfd0"/>
+  <circle cx="162" cy="378" r="2" fill="#c9a227"/>
 
-  <!-- ========== CURVING TENDRILS (whiplash details) ========== -->
-  <path d="M200 200 C230 185, 250 170, 260 175 C255 180, 235 190, 200 200" stroke="rgba(201,162,39,0.15)" stroke-width="0.8" fill="none"/>
-  <path d="M200 200 C170 215, 150 230, 140 225 C145 220, 165 210, 200 200" stroke="rgba(201,162,39,0.15)" stroke-width="0.8" fill="none"/>
-  <path d="M80 50 C90 40, 100 35, 105 42 C98 45, 88 48, 80 50" stroke="rgba(138,154,91,0.15)" stroke-width="0.8" fill="none"/>
-  <path d="M320 350 C310 360, 300 365, 295 358 C302 355, 312 352, 320 350" stroke="rgba(138,154,91,0.15)" stroke-width="0.8" fill="none"/>
+  <path d="M440 380 Q450 370 445 360 Q435 365 430 375Z" fill="#dab0a0"/>
+  <circle cx="438" cy="378" r="4" fill="#e8dfd0"/>
+  <circle cx="438" cy="378" r="2" fill="#c9a227"/>
 
-  <!-- ========== IRIS / LILY BUD SHAPES ========== -->
-  <path d="M50 200 C45 185, 48 172, 55 168 C52 178, 52 188, 55 200 C52 200, 50 200, 50 200Z" fill="rgba(148,100,130,0.15)"/>
-  <path d="M350 200 C355 185, 352 172, 345 168 C348 178, 348 188, 345 200 C348 200, 350 200, 350 200Z" fill="rgba(148,100,130,0.15)"/>
+  <!-- ====== GOLD BERRY DOTS (like the wallpaper) ====== -->
+  <circle cx="170" cy="170" r="5" fill="#c9a227"/>
+  <circle cx="430" cy="170" r="5" fill="#c9a227"/>
+  <circle cx="170" cy="430" r="5" fill="#c9a227"/>
+  <circle cx="430" cy="430" r="5" fill="#c9a227"/>
+  <circle cx="140" cy="140" r="3.5" fill="#dbb84d"/>
+  <circle cx="460" cy="140" r="3.5" fill="#dbb84d"/>
+  <circle cx="140" cy="460" r="3.5" fill="#dbb84d"/>
+  <circle cx="460" cy="460" r="3.5" fill="#dbb84d"/>
+  <circle cx="200" cy="140" r="3" fill="#c9a227"/>
+  <circle cx="400" cy="140" r="3" fill="#c9a227"/>
+  <circle cx="200" cy="460" r="3" fill="#c9a227"/>
+  <circle cx="400" cy="460" r="3" fill="#c9a227"/>
+  <circle cx="120" cy="200" r="3" fill="#dbb84d"/>
+  <circle cx="480" cy="200" r="3" fill="#dbb84d"/>
+  <circle cx="120" cy="400" r="3" fill="#dbb84d"/>
+  <circle cx="480" cy="400" r="3" fill="#dbb84d"/>
+  <!-- Scattered small dots -->
+  <circle cx="230" cy="170" r="2.5" fill="#c9a227"/>
+  <circle cx="370" cy="170" r="2.5" fill="#c9a227"/>
+  <circle cx="230" cy="430" r="2.5" fill="#c9a227"/>
+  <circle cx="370" cy="430" r="2.5" fill="#c9a227"/>
+  <circle cx="170" cy="260" r="2" fill="#dbb84d"/>
+  <circle cx="430" cy="260" r="2" fill="#dbb84d"/>
+  <circle cx="170" cy="340" r="2" fill="#dbb84d"/>
+  <circle cx="430" cy="340" r="2" fill="#dbb84d"/>
+  <circle cx="260" cy="150" r="2" fill="#c9a227"/>
+  <circle cx="340" cy="150" r="2" fill="#c9a227"/>
+  <circle cx="260" cy="450" r="2" fill="#c9a227"/>
+  <circle cx="340" cy="450" r="2" fill="#c9a227"/>
+
+  <!-- ====== ADDITIONAL SCROLLWORK ====== -->
+  <path d="M120 300 Q100 270 110 240 Q125 260 130 285" stroke="#a89850" stroke-width="2" fill="none"/>
+  <path d="M120 300 Q100 330 110 360 Q125 340 130 315" stroke="#a89850" stroke-width="2" fill="none"/>
+  <path d="M480 300 Q500 270 490 240 Q475 260 470 285" stroke="#a89850" stroke-width="2" fill="none"/>
+  <path d="M480 300 Q500 330 490 360 Q475 340 470 315" stroke="#a89850" stroke-width="2" fill="none"/>
+  <path d="M300 120 Q270 100 240 110 Q260 125 285 130" stroke="#a89850" stroke-width="2" fill="none"/>
+  <path d="M300 120 Q330 100 360 110 Q340 125 315 130" stroke="#a89850" stroke-width="2" fill="none"/>
+  <path d="M300 480 Q270 500 240 490 Q260 475 285 470" stroke="#a89850" stroke-width="2" fill="none"/>
+  <path d="M300 480 Q330 500 360 490 Q340 475 315 470" stroke="#a89850" stroke-width="2" fill="none"/>
+
+  <!-- ====== FERN/FEATHER LEAF DETAILS ====== -->
+  <path d="M60 180 Q40 160 30 130 Q45 150 60 165Z" fill="#5a6838"/>
+  <path d="M540 180 Q560 160 570 130 Q555 150 540 165Z" fill="#5a6838"/>
+  <path d="M60 420 Q40 440 30 470 Q45 450 60 435Z" fill="#5a6838"/>
+  <path d="M540 420 Q560 440 570 470 Q555 450 540 435Z" fill="#5a6838"/>
+  <!-- More fills between elements -->
+  <path d="M150 300 Q130 280 120 260 Q135 275 145 290Z" fill="#6b7a45"/>
+  <path d="M150 300 Q130 320 120 340 Q135 325 145 310Z" fill="#6b7a45"/>
+  <path d="M450 300 Q470 280 480 260 Q465 275 455 290Z" fill="#6b7a45"/>
+  <path d="M450 300 Q470 320 480 340 Q465 325 455 310Z" fill="#6b7a45"/>
 </svg>
