@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -1422,6 +1423,34 @@
             50% { border-color: transparent; }
         }
 
+        /* ====== AWARD RESULT CARDS ====== */
+        .award-card {
+            background: rgba(30,30,24,0.85);
+            border: 1px solid rgba(201,162,39,0.3);
+            margin-bottom: 20px;
+            padding: 16px;
+        }
+        .award-card__title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            color: var(--gold);
+            text-align: center;
+            margin-bottom: 4px;
+        }
+        .award-card__winner {
+            font-family: 'Poiret One', serif;
+            font-size: 0.8rem;
+            color: var(--cream);
+            text-align: center;
+            letter-spacing: 0.1em;
+            margin-bottom: 8px;
+        }
+        .award-card__winner i { color: var(--gold); margin-right: 4px; }
+        .award-chart {
+            width: 100%;
+            height: 180px;
+        }
+
         /* ====== VOTING ====== */
         .vote-category {
             margin-bottom: 16px;
@@ -1450,7 +1479,7 @@
 
         /* ====== INSPECT CHARACTER CARDS ====== */
         .inspect-char {
-            background: rgba(42,42,40,0.7);
+            background: rgba(30,30,24,0.92);
             border: 1px solid rgba(201,162,39,0.25);
             padding: 16px;
             margin-bottom: 12px;
@@ -2805,7 +2834,7 @@
                 <button class="btn btn-secondary btn-join" onclick="joinWithCode()">Join</button>
             </div>
             <button class="btn btn-subtle" onclick="showScreen('inspect-screen')" style="width: 100%;">
-                <i class="fas fa-users"></i> Meet the Guests
+                <i class="fas fa-users"></i> The Dossiers
             </button>
             <button class="btn btn-subtle" onclick="showScreen('rules-screen')" style="width: 100%;">
                 <i class="fas fa-book-open"></i> How to Play
@@ -2946,23 +2975,29 @@
             <!-- Action buttons -->
             <div class="notes-section">
                 <button class="btn-send-note" onclick="openNoteModal()">
-                    <i class="fas fa-pen-fancy"></i> Send Anonymous Note
+                    <i class="fas fa-pen-fancy"></i> Slip a Note
                 </button>
                 <button class="btn-send-note" onclick="openInbox()" style="margin-top: 8px;">
-                    <i class="fas fa-inbox"></i> Inbox <span id="inbox-badge" style="display:none; background: var(--wine); color: var(--cream); padding: 1px 6px; border-radius: 50%; font-size: 0.7rem; margin-left: 6px;">0</span>
+                    <i class="fas fa-inbox"></i> Correspondence <span id="inbox-badge" style="display:none; background: var(--wine); color: var(--cream); padding: 1px 6px; border-radius: 50%; font-size: 0.7rem; margin-left: 6px;">0</span>
                 </button>
                 <button class="btn-send-note" onclick="openDossier()" style="margin-top: 8px;">
                     <i class="fas fa-id-card"></i> My Dossier
                 </button>
                 <button class="btn-send-note" onclick="openGuestList()" style="margin-top: 8px;">
-                    <i class="fas fa-users"></i> Guest List
+                    <i class="fas fa-users"></i> Who's Here Tonight
                 </button>
             </div>
             <button class="btn-send-note" onclick="openVoting()" style="margin-top: 8px;">
-                <i class="fas fa-trophy"></i> Awards Ballot
+                <i class="fas fa-trophy"></i> Cast Your Ballot
+            </button>
+            <button class="btn-send-note" onclick="showAwardsResults()" style="margin-top: 8px;">
+                <i class="fas fa-chart-bar"></i> The Evening's Verdict
             </button>
             <button class="btn-lights-out" id="btn-lights-out" onclick="toggleLightsOut()" style="display: none;">
                 <i class="fas fa-moon"></i> LIGHTS OUT
+            </button>
+            <button class="btn-lights-out" id="btn-end-game" onclick="confirmEndGame()" style="display: none; margin-top: 8px; border-color: var(--wine-dark); color: var(--wine-light);">
+                <i class="fas fa-flag-checkered"></i> END THE EVENING
             </button>
         </div>
 
@@ -2978,9 +3013,24 @@
     <div id="inspect-screen" class="screen" style="overflow-y: auto; justify-content: flex-start; padding-top: 60px; padding-bottom: 40px;">
         <button class="back-btn" onclick="showScreen('start-screen')">&#8592;</button>
         <div style="width: 100%; max-width: 500px;">
-            <h2 class="rules-title title-display">The Guest List</h2>
+            <h2 class="rules-title title-display">The Dossiers</h2>
+            <p style="text-align: center; color: var(--text-muted); font-style: italic; font-size: 0.85rem; margin-bottom: 16px;">Intelligence gathered on tonight's persons of interest</p>
             <div class="art-nouveau-divider"></div>
             <div id="inspect-characters-list"></div>
+        </div>
+    </div>
+
+    <!-- ==================== AWARDS RESULTS SCREEN ==================== -->
+    <div id="awards-screen" class="screen" style="overflow-y: auto; justify-content: flex-start; padding-top: 40px; padding-bottom: 40px;">
+        <div style="width: 100%; max-width: 500px; padding: 0 16px;">
+            <div style="text-align: center; margin-bottom: 24px;">
+                <i class="fas fa-trophy" style="font-size: 2.5rem; color: var(--gold); margin-bottom: 8px;"></i>
+                <h2 class="rules-title title-display" style="margin-bottom: 4px;">The Nieuw-West Awards</h2>
+                <p style="font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--text-muted); font-size: 0.9rem;" id="awards-voters">Results from 0 voters</p>
+            </div>
+            <div class="art-nouveau-divider"></div>
+            <div id="awards-results"></div>
+            <button class="btn btn-secondary" onclick="showScreen('game-screen')" style="width: 100%; margin-top: 20px;">Back to Game</button>
         </div>
     </div>
 
@@ -3050,14 +3100,14 @@
     <script>
         // ==================== DISPLAY DATA ====================
         const ROOM_DISPLAY = {
-            balcony:           { name: 'Balcony',             icon: 'fa-cloud-moon' },
-            living_room:       { name: 'Living Room',         icon: 'fa-couch' },
-            kitchen:           { name: 'Kitchen',             icon: 'fa-utensils' },
-            hall:              { name: 'Hall',                icon: 'fa-door-open' },
-            big_bathroom:      { name: 'Big Bathroom',        icon: 'fa-bath' },
-            laundry_room:      { name: 'Laundry Room',        icon: 'fa-shirt' },
-            gustavos_bedroom:  { name: "Gustavo's Bedroom",   icon: 'fa-bed' },
-            jakobs_bedroom:    { name: "Jakob's Bedroom",     icon: 'fa-bed' },
+            balcony:           { name: 'Balcony',             icon: 'fa-cloud-moon',  capacity: 8 },
+            living_room:       { name: 'Living Room',         icon: 'fa-couch',       capacity: 14 },
+            kitchen:           { name: 'Kitchen',             icon: 'fa-utensils',    capacity: 8 },
+            hall:              { name: 'Hall',                icon: 'fa-door-open',   capacity: 5 },
+            big_bathroom:      { name: 'Big Bathroom',        icon: 'fa-bath',        capacity: 3 },
+            laundry_room:      { name: 'Laundry Room',        icon: 'fa-shirt',       capacity: 3 },
+            gustavos_bedroom:  { name: "Gustavo's Bedroom",   icon: 'fa-bed',         capacity: 3 },
+            jakobs_bedroom:    { name: "Jakob's Bedroom",     icon: 'fa-bed',         capacity: 3 },
         };
 
         const ROLE_CONFIG = {
@@ -3667,11 +3717,11 @@
                 codeEl.textContent = 'CODE: ' + gameState.gameCode;
             }
 
-            // Show lights-out button for host
+            // Show host-only buttons
             const lightsBtn = document.getElementById('btn-lights-out');
-            if (lightsBtn) {
-                lightsBtn.style.display = gameState.isHost ? 'block' : 'none';
-            }
+            if (lightsBtn) lightsBtn.style.display = gameState.isHost ? 'block' : 'none';
+            const endBtn = document.getElementById('btn-end-game');
+            if (endBtn) endBtn.style.display = gameState.isHost ? 'block' : 'none';
 
             // Role icon
             const iconEl = document.getElementById('game-role-icon');
@@ -3711,7 +3761,8 @@
             const roomKey = gameState.currentRoom;
             const roomInfo = ROOM_DISPLAY[roomKey] || { name: roomKey || 'Unknown', icon: 'fa-location-dot' };
 
-            document.getElementById('task-room').innerHTML = `<i class="fas ${roomInfo.icon}"></i> <span>${roomInfo.name}</span>`;
+            const capText = roomInfo.capacity ? ` (max ${roomInfo.capacity})` : '';
+            document.getElementById('task-room').innerHTML = `<i class="fas ${roomInfo.icon}"></i> <span>${roomInfo.name}${capText}</span>`;
 
             const taskText = gameState.currentTask || 'No task assigned yet';
             if (animate) {
@@ -4195,6 +4246,123 @@
             } catch(e) {
                 showStatus('Failed to submit votes', true);
             }
+        }
+
+        // ==================== AWARDS RESULTS (ECharts) ====================
+        async function showAwardsResults() {
+            try {
+                showStatus('Loading results...');
+                const result = await callAPI('getVoteResults', {
+                    gameCode: gameState.gameCode
+                });
+
+                if (result.success) {
+                    renderAwardsScreen(result.results, result.totalVoters);
+                    showScreen('awards-screen');
+                } else {
+                    showStatus(result.error || 'Failed to load results', true);
+                }
+            } catch(e) {
+                showStatus('Connection error', true);
+            }
+        }
+
+        function renderAwardsScreen(results, totalVoters) {
+            document.getElementById('awards-voters').textContent = 'Results from ' + (totalVoters || 0) + ' voter' + (totalVoters !== 1 ? 's' : '');
+
+            const container = document.getElementById('awards-results');
+
+            if (!results || Object.keys(results).length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: var(--text-muted); font-style: italic; padding: 40px 0;">No votes have been cast yet. The ballot box awaits...</p>';
+                return;
+            }
+
+            // Noir color palette for charts
+            const chartColors = ['#c9a227', '#d4a898', '#8a9a5b', '#946478', '#dbb84d', '#a89850', '#c08888', '#6b7a45'];
+
+            const categoryIcons = {
+                'Best Dressed': 'fa-shirt',
+                'Most Charming': 'fa-heart',
+                'Most Suspicious': 'fa-eye',
+                'Best Performance': 'fa-masks-theater',
+                'Most Dramatic Death': 'fa-skull',
+                'Sharpest Eye': 'fa-magnifying-glass',
+                'Life of the Party': 'fa-champagne-glasses',
+                'Most Devious': 'fa-mask',
+            };
+
+            container.innerHTML = '';
+
+            Object.keys(results).forEach((category, idx) => {
+                const entries = results[category];
+                if (!entries || entries.length === 0) return;
+
+                const winner = entries[0];
+                const icon = categoryIcons[category] || 'fa-award';
+
+                const cardDiv = document.createElement('div');
+                cardDiv.className = 'award-card';
+                cardDiv.innerHTML = `
+                    <div class="award-card__title"><i class="fas ${icon}" style="margin-right: 6px;"></i>${category}</div>
+                    <div class="award-card__winner"><i class="fas fa-crown"></i> ${winner.name} (${winner.votes} vote${winner.votes !== 1 ? 's' : ''})</div>
+                    <div class="award-chart" id="chart-${idx}"></div>
+                `;
+                container.appendChild(cardDiv);
+
+                // Render EChart after DOM insert
+                setTimeout(() => {
+                    const chartEl = document.getElementById('chart-' + idx);
+                    if (!chartEl || typeof echarts === 'undefined') return;
+
+                    const chart = echarts.init(chartEl, null, { renderer: 'canvas' });
+                    chart.setOption({
+                        grid: { left: 10, right: 30, top: 10, bottom: 5, containLabel: true },
+                        xAxis: {
+                            type: 'value',
+                            show: false,
+                            max: Math.max(...entries.map(e => e.votes)) + 1
+                        },
+                        yAxis: {
+                            type: 'category',
+                            data: entries.map(e => e.name).reverse(),
+                            axisLine: { show: false },
+                            axisTick: { show: false },
+                            axisLabel: {
+                                color: '#e8dfd0',
+                                fontFamily: 'Cormorant Garamond, serif',
+                                fontSize: 12
+                            }
+                        },
+                        series: [{
+                            type: 'bar',
+                            data: entries.map(e => e.votes).reverse(),
+                            itemStyle: {
+                                color: function(params) {
+                                    return chartColors[params.dataIndex % chartColors.length];
+                                },
+                                borderRadius: [0, 4, 4, 0]
+                            },
+                            barWidth: '60%',
+                            label: {
+                                show: true,
+                                position: 'right',
+                                color: '#c9a227',
+                                fontFamily: 'Bebas Neue, sans-serif',
+                                fontSize: 14
+                            }
+                        }],
+                        animation: true,
+                        animationDuration: 1000,
+                        animationEasing: 'cubicOut'
+                    });
+                }, 100);
+            });
+        }
+
+        // ==================== END GAME ====================
+        function confirmEndGame() {
+            if (!confirm('End the evening? This will reveal the Award results to everyone.')) return;
+            showAwardsResults();
         }
 
         // ==================== INSPECT CHARACTERS ====================

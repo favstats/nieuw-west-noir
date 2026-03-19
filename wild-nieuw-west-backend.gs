@@ -98,6 +98,9 @@ function handleRequest(params) {
       case 'getMyNotes':
         result = getMyNotes(params.gameCode, params.characterName);
         break;
+      case 'getVoteResults':
+        result = getVoteResults(params.gameCode);
+        break;
       default:
         result = { success: false, error: 'Unknown action: ' + action };
     }
@@ -567,6 +570,57 @@ function getMyNotes(gameCode, characterName) {
   }
 
   return { success: true, notes: notes };
+}
+
+/**
+ * Tally all votes and return results per category
+ */
+function getVoteResults(gameCode) {
+  if (!gameCode) return { success: false, error: 'Game code required' };
+
+  gameCode = gameCode.toUpperCase().trim();
+
+  const ss = SpreadsheetApp.openById(SHEET_ID);
+  var messagesSheet = ss.getSheetByName('Messages');
+  if (!messagesSheet) return { success: true, results: {} };
+
+  var msgData = messagesSheet.getDataRange().getValues();
+  var allVotes = [];
+
+  // Collect all vote messages
+  for (var i = 1; i < msgData.length; i++) {
+    if (msgData[i][0] === gameCode && msgData[i][2] === '__VOTES__') {
+      allVotes.push(msgData[i][3]); // The vote string
+    }
+  }
+
+  // Parse votes: "Best Dressed: Contessa | Most Charming: Professor"
+  var tally = {};
+  allVotes.forEach(function(voteStr) {
+    var parts = voteStr.split(' | ');
+    parts.forEach(function(part) {
+      var sep = part.indexOf(': ');
+      if (sep === -1) return;
+      var category = part.substring(0, sep).trim();
+      var nominee = part.substring(sep + 2).trim();
+      if (!tally[category]) tally[category] = {};
+      if (!tally[category][nominee]) tally[category][nominee] = 0;
+      tally[category][nominee]++;
+    });
+  });
+
+  // Find winners per category
+  var results = {};
+  for (var cat in tally) {
+    var entries = [];
+    for (var name in tally[cat]) {
+      entries.push({ name: name, votes: tally[cat][name] });
+    }
+    entries.sort(function(a, b) { return b.votes - a.votes; });
+    results[cat] = entries;
+  }
+
+  return { success: true, results: results, totalVoters: allVotes.length };
 }
 
 // ==================== UTILITY FUNCTIONS ====================
