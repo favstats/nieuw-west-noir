@@ -1418,6 +1418,78 @@
             50% { border-color: transparent; }
         }
 
+        /* ====== INSPECT CHARACTER CARDS ====== */
+        .inspect-char {
+            background: rgba(42,42,40,0.7);
+            border: 1px solid rgba(201,162,39,0.25);
+            padding: 16px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .inspect-char:hover {
+            border-color: var(--gold);
+            background: rgba(201,162,39,0.08);
+        }
+        .inspect-char__header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+        .inspect-char__icon {
+            font-size: 1.4rem;
+            color: var(--gold);
+            width: 30px;
+            text-align: center;
+        }
+        .inspect-char__name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: var(--cream);
+        }
+        .inspect-char__title {
+            font-family: 'Poiret One', serif;
+            font-size: 0.75rem;
+            color: var(--gold);
+            letter-spacing: 0.1em;
+        }
+        .inspect-char__details {
+            display: none;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(201,162,39,0.15);
+        }
+        .inspect-char.open .inspect-char__details {
+            display: block;
+        }
+        .inspect-char__prof {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-bottom: 8px;
+        }
+        .inspect-char__desc {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.95rem;
+            color: var(--cream);
+            line-height: 1.5;
+            margin-bottom: 8px;
+        }
+        .inspect-char__quirk {
+            font-size: 0.85rem;
+            color: var(--rose);
+            font-style: italic;
+        }
+        .inspect-char__quirk::before {
+            content: 'Tell: ';
+            font-style: normal;
+            color: var(--gold-dark);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+        }
+
         /* ====== LIGHTS OUT OVERLAY ====== */
         .lights-out {
             position: fixed;
@@ -2687,6 +2759,9 @@
                 <input type="text" class="join-input" id="join-code-input" placeholder="GAME CODE" maxlength="10">
                 <button class="btn btn-secondary btn-join" onclick="joinWithCode()">Join</button>
             </div>
+            <button class="btn btn-subtle" onclick="showScreen('inspect-screen')" style="width: 100%;">
+                <i class="fas fa-users"></i> Meet the Guests
+            </button>
             <button class="btn btn-subtle" onclick="showScreen('rules-screen')" style="width: 100%;">
                 <i class="fas fa-book-open"></i> How to Play
             </button>
@@ -2848,6 +2923,16 @@
             <button class="death-toggle" id="death-toggle-btn" onclick="toggleDeath()">
                 <i class="fas fa-skull-crossbones"></i> I Have Been Murdered!
             </button>
+        </div>
+    </div>
+
+    <!-- ==================== INSPECT CHARACTERS SCREEN ==================== -->
+    <div id="inspect-screen" class="screen" style="overflow-y: auto; justify-content: flex-start; padding-top: 60px; padding-bottom: 40px;">
+        <button class="back-btn" onclick="showScreen('start-screen')">&#8592;</button>
+        <div style="width: 100%; max-width: 500px;">
+            <h2 class="rules-title title-display">The Guest List</h2>
+            <div class="art-nouveau-divider"></div>
+            <div id="inspect-characters-list"></div>
         </div>
     </div>
 
@@ -3211,6 +3296,9 @@
 
             gameState.isCreating = isCreating;
 
+            if (screenId === 'inspect-screen') {
+                populateInspectScreen();
+            }
             if (screenId === 'lobby-screen') {
                 updateLobbyDisplay();
             }
@@ -3985,6 +4073,28 @@
                 triggerDeathFlash();
             }
             previousDeathCount = newCount;
+        }
+
+        // ==================== INSPECT CHARACTERS ====================
+        function populateInspectScreen() {
+            const list = document.getElementById('inspect-characters-list');
+            if (!list) return;
+            list.innerHTML = CHARACTERS.map((char, i) => `
+                <div class="inspect-char" onclick="this.classList.toggle('open')">
+                    <div class="inspect-char__header">
+                        <div class="inspect-char__icon"><i class="fas ${char.icon}"></i></div>
+                        <div>
+                            <div class="inspect-char__name">${char.name}</div>
+                            <div class="inspect-char__title">${char.title}</div>
+                        </div>
+                    </div>
+                    <div class="inspect-char__details">
+                        <div class="inspect-char__prof">${char.profession}</div>
+                        <div class="inspect-char__desc">${char.description}</div>
+                        <div class="inspect-char__quirk">${char.quirk}</div>
+                    </div>
+                </div>
+            `).join('');
         }
 
         // ==================== DOSSIER & GUEST LIST ====================
