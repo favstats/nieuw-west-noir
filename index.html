@@ -2964,7 +2964,7 @@
             <!-- Game Status -->
             <div class="game-status-bar">
                 <div class="death-count-display">
-                    <i class="fas fa-skull"></i> Deaths: <span id="death-count">0</span>/<span id="murder-target">6</span>
+                    <i class="fas fa-skull"></i> Deaths: <span id="death-count">0</span>/<span id="murder-target">10</span>
                 </div>
                 <div>Alive: <span id="alive-count">0</span></div>
             </div>
@@ -3049,7 +3049,7 @@
             <div class="rules-section">
                 <h3>Roles</h3>
                 <ul>
-                    <li><span class="rules-role-label role-badge-murderer">Murderer</span> Secretly eliminate guests during lights-out rounds. You need 6 kills to win.</li>
+                    <li><span class="rules-role-label role-badge-murderer">Murderer</span> Secretly eliminate guests during lights-out rounds. You need 10 kills to win.</li>
                     <li><span class="rules-role-label role-badge-detective">Detective</span> Investigate and find the murderers. Watch, listen, and deduce.</li>
                     <li><span class="rules-role-label role-badge-innocent">Innocent</span> Survive and help identify the murderers through voting.</li>
                 </ul>
@@ -3073,8 +3073,8 @@
             <div class="rules-section">
                 <h3>Victory</h3>
                 <ul>
-                    <li><strong>Murderers win</strong> if they reach 6 kills.</li>
-                    <li><strong>Innocents &amp; Detectives win</strong> if all murderers are arrested before reaching 6 kills.</li>
+                    <li><strong>Murderers win</strong> if they reach 10 kills.</li>
+                    <li><strong>Innocents &amp; Detectives win</strong> if all murderers are arrested before reaching 10 kills.</li>
                 </ul>
             </div>
         </div>
@@ -3117,7 +3117,7 @@
                 cssClass: 'role-murderer',
                 badgeClass: 'role-badge-murderer',
                 infoClass: 'murderer-info',
-                description: 'You must murder 6 guests to win. Be discreet during lights-out.'
+                description: 'You must murder 10 guests to win. Be discreet during lights-out.'
             },
             detective: {
                 name: 'Detective',
@@ -3277,41 +3277,68 @@
                 'Go to the balcony and admire the night sky with someone',
                 'Step outside for fresh air and share a secret with a guest',
                 'Have a hushed conversation on the balcony about the evening',
+                'Psychoanalyze another guest on the balcony',
+                'Discuss the importance of freedom with a fellow guest',
+                'Make an exasperated comment about another guest',
+                'Lean on the railing and confide a fear to whoever is nearby',
+                'Challenge someone to a staring contest under the stars',
             ],
             'living_room': [
                 'Check the art in the living room and share your opinion',
                 'Sit in the living room and discuss your philosophy of life',
-                'Compliment the host on their living room decor',
+                'Compliment the living room for its exquisite decor',
+                'Discuss recent world events with other guests',
+                'Review the music that is playing, or ask a guest about their musical taste',
+                'Pick up a book from the shelf and read a passage aloud dramatically',
+                'Debate whether the painting on the wall is genuine or a forgery',
+                'Toast to the evening and make a short speech about nothing important',
             ],
             'kitchen': [
                 'Pretend to make a drink in the kitchen',
                 'Help yourself to refreshments and chat with whoever is there',
                 'Offer to prepare something for another guest',
+                'Critique the wine selection with theatrical authority',
+                'Tell a scandalous story while leaning against the counter',
+                'Accidentally knock something over and blame the nearest guest',
             ],
             'hall': [
                 'Linger in the hall and greet passing guests',
                 'Have a private conversation in the hallway',
                 'Stand by the entrance and observe who comes and goes',
+                'Make another guest self-conscious by complimenting their style too much',
+                'Make up rumours about what other guests are doing in other rooms',
+                'Pace dramatically as if waiting for someone who never arrives',
+                'Whisper something conspiratorial to the first person who walks by',
             ],
             'big_bathroom': [
                 'Freshen up and have a brief chat near the bathroom',
                 'Powder your nose and exchange gossip',
                 'Wait near the bathroom and corner someone for a quick word',
+                'Stare at yourself in the mirror and question your life choices aloud',
+                'Practise your alibi in front of the mirror',
             ],
             'laundry_room': [
                 'Sneak into the laundry room for a secret conversation',
                 'Pretend to look for something in the laundry room',
                 'Hide in the laundry room and eavesdrop on nearby chatter',
+                'Reminisce about "the one who got away" to whoever will listen',
+                'Admire the boiler engineering with genuine fascination',
+                'Hide away from the party\'s hubbub and enjoy the quiet',
+                'Confess something trivial as if it were a terrible secret',
             ],
             'gustavos_bedroom': [
-                'Explore Gustavo\'s bedroom curiously',
-                'Admire the decor in Gustavo\'s room and chat with someone',
-                'Examine something on Gustavo\'s nightstand and ask about it',
+                'Relax and enjoy the stillness with another guest',
+                'Curiously hang about in Gustavo\'s room',
+                'Discuss spirituality with another guest',
+                'Confess admiration for another guest\'s professional achievements',
+                'Reminisce about old dreams and adventures',
             ],
             'jakobs_bedroom': [
-                'Peek into Jakob\'s bedroom out of curiosity',
-                'Have a discreet chat in Jakob\'s room',
-                'Examine something interesting in Jakob\'s room',
+                'Relax and enjoy the stillness with another guest',
+                'Curiously hang about in Jakob\'s room',
+                'Discuss spirituality with another guest',
+                'Confess admiration for another guest\'s professional achievements',
+                'Reminisce about old dreams and adventures',
             ],
         };
 
@@ -3772,7 +3799,7 @@
             document.getElementById('death-count').textContent = gameState.deathCount || 0;
             document.getElementById('alive-count').textContent = (gameState.totalPlayers || 0) - (gameState.deathCount || 0);
 
-            const target = 6;
+            const target = 10;
             document.getElementById('murder-target').textContent = target;
             const pct = Math.min(100, ((gameState.deathCount || 0) / target) * 100);
             document.getElementById('death-progress-bar').style.width = pct + '%';
